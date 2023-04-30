@@ -10720,8 +10720,16 @@ textarea.form-control-lg {
   }
 }
 .fa-circle-check {
-  font-size: 2.9rem;
+  font-size: 1.3rem;
   color: green;
+}
+
+.fa-circle-exclamation {
+  color: red;
+}
+
+.active {
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */

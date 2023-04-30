@@ -159,12 +159,25 @@
               <div class="mb-3">
                 <label for="name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" id="registerName" />
-                <div id="registerNameHelp" class="form-text"></div>
+                <div
+                  id="registerNameHelp"
+                  class="form-text"
+                  style="display: none"
+                >
+                  <i id="symbolName" class="fa-solid"></i>
+                  The name value must not contain punctuation symbols apart from
+                  underscore (_).
+                </div>
               </div>
               <div class="mb-3">
                 <label for="username" class="col-form-label">Username:</label>
                 <input type="text" class="form-control" id="registerUserName" />
-                <div id="registerEmailHelp" class="form-text">
+                <div
+                  id="registerEmailHelp"
+                  class="form-text"
+                  style="display: none"
+                >
+                  <i id="symbolEmail" class="fa-solid"></i>
                   Must be a valid @stud.noroff.no email.
                 </div>
               </div>
@@ -175,15 +188,31 @@
                   class="form-control"
                   id="registerPassword"
                 />
-                <div id="registerEmailHelp" class="form-text"></div>
-              </div>
-              <div class="mb-3">
-                <label for="avatar" class="col-form-label">Avatar:</label>
-                <input type="text" class="form-control" id="registerAvatar" />
-                <div id="registerAvatarHelp" class="form-text">
-                  Must be a valid image url.
+                <div
+                  id="registerPasswordHelp"
+                  class="form-text"
+                  style="display: none"
+                >
+                  <i id="symbolPassword" class="fa-solid"></i>
+                  The password value must be at least 8 characters.
                 </div>
               </div>
+              <div class="mb-3">
+                <label for="avatar" class="col-form-label"
+                  >Avatar (optional):</label
+                >
+                <input type="text" class="form-control" id="registerAvatar" />
+                <div id="registerAvatarHelp" class="form-text">
+                  <span></span> Must be a valid image url.
+                </div>
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainer"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
             </form>
           </div>
           <div class="modal-footer">
@@ -198,6 +227,7 @@
               type="button"
               class="btn btn-outline-dark bg-primary"
               id="registerUserBtn"
+              disabled
             >
               Register user
             </button>
@@ -223,10 +253,12 @@
             ></button>
           </div>
           <div
-            class="modal-body d-flex align-items-center justify-content-center gap-4"
+            class="modal-body d-flex align-items-center justify-content-center gap-2"
           >
             <i class="fa-regular fa-circle-check"></i>
-            <div class="display-6">User created!</div>
+            <div class="font-weight-bold" style="font-size: 1.4rem">
+              User created!
+            </div>
           </div>
           <div class="modal-footer">
             <button
