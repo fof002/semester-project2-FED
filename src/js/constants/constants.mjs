@@ -1,3 +1,4 @@
+//register user constants
 export const registerUsernameInput =
   document.querySelector("#registerUserName");
 export const registerEmailHelp = document.querySelector("#registerEmailHelp");
@@ -17,3 +18,7 @@ export const errorContainer = document.querySelector("#errorContainer");
 export const symbolName = document.querySelector("#symbolName");
 export const symbolPassword = document.querySelector("#symbolPassword");
 export const symbolEmail = document.querySelector("#symbolEmail");
+//login constants
+export const loginInputEmail = document.querySelector("#loginInputEmail");
+export const loginInputPassword = document.querySelector("#loginInputPassword");
+export const loginUserBtn = document.querySelector("#loginUserBtn");

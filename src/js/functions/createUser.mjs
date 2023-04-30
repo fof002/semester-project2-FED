@@ -10,18 +10,17 @@ import {
 } from "../constants/constants.mjs";
 
 const registerUserUrl = url + "register";
-let userInput = {};
 
 /**
  * Function for registering user
  */
 
 export async function registerUser() {
-  userInput = {
-    name: registerNameInput.value,
-    email: registerUsernameInput.value, // Required
-    password: registerPasswordInput.value, // Required
-    avatar: registerAvatarInput.value,
+  let userInput = {
+    name: registerNameInput.value.trim(),
+    email: registerUsernameInput.value.trim(),
+    password: registerPasswordInput.value.trim(),
+    avatar: registerAvatarInput.value.trim(),
   };
   fetch(registerUserUrl, {
     method: "POST",
