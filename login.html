@@ -107,7 +107,7 @@
               type="button"
               class="btn btn-outline-dark bg-primary"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#registerUserModal"
               data-bs-whatever="@mdo"
             >
               Register new user
@@ -138,17 +138,15 @@
     </footer>
     <div
       class="modal fade"
-      id="exampleModal"
+      id="registerUserModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="registerUserModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Register new user
-            </h1>
+            <h1 class="modal-title fs-5">Register new user</h1>
             <button
               type="button"
               class="btn-close"
@@ -158,6 +156,11 @@
           </div>
           <div class="modal-body">
             <form>
+              <div class="mb-3">
+                <label for="name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="registerName" />
+                <div id="registerNameHelp" class="form-text"></div>
+              </div>
               <div class="mb-3">
                 <label for="username" class="col-form-label">Username:</label>
                 <input type="text" class="form-control" id="registerUserName" />
@@ -172,8 +175,13 @@
                   class="form-control"
                   id="registerPassword"
                 />
-                <div id="registerEmailHelp" class="form-text">
-                  Must be a valid @stud.noroff.no email.
+                <div id="registerEmailHelp" class="form-text"></div>
+              </div>
+              <div class="mb-3">
+                <label for="avatar" class="col-form-label">Avatar:</label>
+                <input type="text" class="form-control" id="registerAvatar" />
+                <div id="registerAvatarHelp" class="form-text">
+                  Must be a valid image url.
                 </div>
               </div>
             </form>
@@ -186,8 +194,47 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-outline-dark bg-primary">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="registerUserBtn"
+            >
               Register user
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="userCreatedModal"
+      tabindex="-1"
+      aria-labelledby="userCreatedModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            class="modal-body d-flex align-items-center justify-content-center gap-4"
+          >
+            <i class="fa-regular fa-circle-check"></i>
+            <div class="display-6">User created!</div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              data-bs-dismiss="modal"
+            >
+              Continue to login
             </button>
           </div>
         </div>

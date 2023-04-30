@@ -10719,5 +10719,9 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.fa-circle-check {
+  font-size: 2.9rem;
+  color: green;
+}
 
 /*# sourceMappingURL=style.css.map */
