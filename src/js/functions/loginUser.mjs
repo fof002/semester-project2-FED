@@ -4,7 +4,7 @@ import {
 } from "../constants/constants.mjs";
 import { url } from "../BASE_URL.mjs";
 
-const loginUserUrl = url + "login";
+const loginUserUrl = url + "auth/login";
 let loginInput = {};
 
 export async function loginUser(event) {

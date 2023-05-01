@@ -9,7 +9,7 @@ import {
   userCreatedModal,
 } from "../constants/constants.mjs";
 
-const registerUserUrl = url + "register";
+const registerUserUrl = url + "auth/register";
 
 /**
  * Function for registering user
@@ -22,21 +22,25 @@ export async function registerUser() {
     password: registerPasswordInput.value.trim(),
     avatar: registerAvatarInput.value.trim(),
   };
-  fetch(registerUserUrl, {
-    method: "POST",
-    body: JSON.stringify(userInput),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => {
-      if (json.errors) {
-        errorContainer.style.display = "block";
-        errorContainer.innerHTML = `<li>${json.errors[0].message}</li>`;
-      } else {
-        registerUserModal.hide();
-        userCreatedModal.show();
-      }
-    });
+  try {
+    fetch(registerUserUrl, {
+      method: "POST",
+      body: JSON.stringify(userInput),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.errors) {
+          errorContainer.style.display = "block";
+          errorContainer.innerHTML = `<li>${json.errors[0].message}</li>`;
+        } else {
+          registerUserModal.hide();
+          userCreatedModal.show();
+        }
+      });
+  } catch (error) {
+    errorContainer.innerHTML = `Something went wrong! (${error})`;
+  }
 }
