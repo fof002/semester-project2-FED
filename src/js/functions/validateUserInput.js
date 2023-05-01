@@ -42,7 +42,7 @@ export function validateUserInput() {
   }
   if (registerUsernameInput.value.length > 0) {
     registerEmailHelp.style.display = "block";
-    if (registerUsernameInput.value.includes("@stud.noroff.no")) {
+    if (registerUsernameInput.value.endsWith("@stud.noroff.no")) {
       symbolEmail.classList.remove("fa-circle-exclamation");
       symbolEmail.classList.add("fa-circle-check");
     } else {
@@ -54,7 +54,7 @@ export function validateUserInput() {
     !specialCharacters.test(registerNameInput.value) &&
     registerNameInput.value.length > 3 &&
     registerPasswordInput.value.length > 7 &&
-    registerUsernameInput.value.includes("@stud.noroff.no")
+    registerUsernameInput.value.endsWith("@stud.noroff.no")
   ) {
     registerUserBtn.disabled = false;
   } else {

@@ -23,11 +23,17 @@ export async function loginUser(event) {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
-      localStorage.setItem("accesstoken", json.accessToken);
-      localStorage.setItem("email", json.email);
-      localStorage.setItem("name", json.name);
-      localStorage.setItem("credits", json.credits);
-      localStorage.setItem("avatar", json.avatar);
+      const { accessToken, name, email, credits, avatar } = json;
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          accesstoken: accessToken,
+          email: email,
+          name: name,
+          credits: credits,
+          avatar: avatar,
+        })
+      );
+      location.assign("login.html");
     });
 }
