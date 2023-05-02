@@ -6,21 +6,237 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="This is the best Auction house in the world!"
+      content="Log in to see the best Auction house in the world!"
     />
     <link
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="dist/style.css" />
-    <title>The Auction House</title>
+    <title>Login - The Auction House</title>
   </head>
   <body>
-    <h1>hello world</h1>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"
+            ><img
+              src="img/Logo2.png"
+              class="object-fit-contain"
+              alt=""
+              height="40"
+          /></a>
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li
+                class="nav-item dropdown d-flex justify-content-center align-items-center"
+              >
+                <a
+                  class="nav-link dropdown-toggle text-dark"
+                  href="login.html"
+                  role="button"
+                  data-bs-toggle="false"
+                  aria-expanded="false"
+                  id="userContainerNav"
+                >
+                </a>
+                <img
+                  id="avatarImage"
+                  src="img/user-regular.svg"
+                  alt="Users avatar"
+                  class="object-fit-contain opacity-75 rounded-circle"
+                  height="20"
+                  width="20"
+                />
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item" id="credits"></li>
+
+                  <li><hr class="dropdown-divider" /></li>
+
+                  <li
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#changeAvatarModal"
+                    data-bs-whatever="@mdo"
+                  >
+                    <i class="fa-solid fa-user-pen me-1"></i>Avatar
+                  </li>
+                  <li
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    id="logOutBtn"
+                  >
+                    <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="mt-4" style="width: min(30em, 90vw); margin: 0 auto">
+        <form>
+          <div class="mb-3">
+            <label for="loginInputEmail" class="form-label"
+              >Email address</label
+            >
+            <input type="email" class="form-control" id="loginInputEmail" />
+            <div id="registerEmailHelp" class="form-text">
+              Must be a valid @stud.noroff.no email.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="loginInputPassword" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="loginInputPassword"
+            />
+          </div>
+          <div class="d-flex gap-2">
+            <button
+              id="loginUserBtn"
+              type="submit"
+              class="btn btn-outline-dark bg-primary"
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#registerUserModal"
+              data-bs-whatever="@mdo"
+            >
+              Register new user
+            </button>
+          </div>
+          <ul
+            class="alert alert-danger pl-2 mt-2"
+            role="alert"
+            id="errorContainerLogin"
+            style="display: none; padding-left: 2em"
+            ;
+          ></ul>
+        </form>
+      </div>
+    </main>
+    <footer class="py-3 my-4 mt-5">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">Safety</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">Bidding</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">About</a>
+        </li>
+      </ul>
+      <p class="text-center text-muted">© 2023 The Auction House</p>
+    </footer>
+    <!-- Change avatar modal -->
+    <div
+      class="modal fade"
+      id="changeAvatarModal"
+      tabindex="-1"
+      aria-labelledby="changeAvatarModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Change your avatar</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="newAvatar" class="col-form-label"
+                  >New Avatar URL:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newAvatarUrlInput"
+                  name="newAvatar"
+                  placeholder="Must be a valid URL"
+                />
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainerAvatar"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
+              <div
+                class="alert alert-success"
+                role="alert"
+                id="successContainerAvatar"
+                style="display: none"
+                ;
+              >
+                Your avatar is updated!
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="registerNewAvatarBtn"
+            >
+              Update avatar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://kit.fontawesome.com/f568442570.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="src/js/login.js" type="module"></script>
   </body>
 </html>
