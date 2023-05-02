@@ -106,38 +106,13 @@
       </nav>
     </header>
     <main>
-      <div class="mt-4" style="width: min(50em, 90vw); margin: 0 auto">
+      <div class="mt-4" style="width: min(80em, 90vw); margin: 0 auto">
         <h1 class="h1 border-bottom pb-3 mb-3 text-center">Latest items</h1>
-        <div class="card col-6" style="width: 20rem">
-          <img
-            class="card-img-top"
-            src="https://www.komplett.no/img/p/1200/1182283.jpg"
-            alt="${title}"
-            height="200"
-          />
-          <div class="card-body">
-            <h5 class="card-title">${title}</h5>
-            <p class="card-text">${description}</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Seller: ${seller.name}</li>
-            <li class="list-group-item">Last updated: ${updated}</li>
-            <li class="list-group-item">Highest bid: ${bids.amount}</li>
-            <li class="list-group-item">
-              <button
-                class="btn btn-outline-dark bg-primary"
-                data-item-id="${id}"
-              >
-                Place bid
-              </button>
-            </li>
-          </ul>
-          <div class="card-body">
-            <a href="#" data-item-id="${id}" class="card-link">View bids</a>
-            <a href="mailto:${seller.email}" class="card-link"
-              >Contact seller</a
-            >
-          </div>
+        <div class="container">
+          <div
+            class="row d-flex justify-content-center gap-4"
+            id="listingsContainer"
+          ></div>
         </div>
       </div>
     </main>

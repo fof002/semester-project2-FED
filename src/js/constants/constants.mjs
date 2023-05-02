@@ -41,3 +41,6 @@ export const registerNewAvatarBtn = document.querySelector(
 export const successContainerAvatar = document.querySelector(
   "#successContainerAvatar"
 );
+
+//for index.html
+export const listingsContainer = document.querySelector("#listingsContainer");
