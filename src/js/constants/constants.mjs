@@ -22,8 +22,22 @@ export const symbolEmail = document.querySelector("#symbolEmail");
 export const loginInputEmail = document.querySelector("#loginInputEmail");
 export const loginInputPassword = document.querySelector("#loginInputPassword");
 export const loginUserBtn = document.querySelector("#loginUserBtn");
+export const errorContainerLogin = document.querySelector(
+  "#errorContainerLogin"
+);
 //for the function check if user is logged in
 export const userContainerNav = document.querySelector("#userContainerNav");
 export const creditsContainer = document.querySelector("#credits");
 //Logout button
 export const logOutBtn = document.querySelector("#logOutBtn");
+//new avatar
+export const newAvatarUrlInput = document.querySelector("#newAvatarUrlInput");
+export const errorContainerAvatar = document.querySelector(
+  "#errorContainerAvatar"
+);
+export const registerNewAvatarBtn = document.querySelector(
+  "#registerNewAvatarBtn"
+);
+export const successContainerAvatar = document.querySelector(
+  "#successContainerAvatar"
+);

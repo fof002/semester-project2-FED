@@ -63,19 +63,23 @@
                   <li class="dropdown-item" id="credits"></li>
 
                   <li><hr class="dropdown-divider" /></li>
+
                   <li
                     class="dropdown-item"
                     style="cursor: pointer"
-                    id="logOutBtn"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#changeAvatarModal"
+                    data-bs-whatever="@mdo"
                   >
-                    <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
+                    <i class="fa-solid fa-user-pen me-1"></i>Avatar
                   </li>
                   <li
                     class="dropdown-item"
                     style="cursor: pointer"
                     id="logOutBtn"
                   >
-                    <i class="fa-solid fa-user-pen me-1"></i>Avatar
+                    <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
                   </li>
                 </ul>
               </li>
@@ -95,6 +99,7 @@
     </header>
     <main>
       <div class="mt-4" style="width: min(30em, 90vw); margin: 0 auto">
+        <p class="h1 border-bottom pb-3 mb-3">Sign in user</p>
         <form>
           <div class="mb-3">
             <label for="loginInputEmail" class="form-label"
@@ -131,6 +136,13 @@
               Register new user
             </button>
           </div>
+          <ul
+            class="alert alert-danger pl-2 mt-2"
+            role="alert"
+            id="errorContainerLogin"
+            style="display: none; padding-left: 2em"
+            ;
+          ></ul>
         </form>
       </div>
     </main>
@@ -154,6 +166,7 @@
       </ul>
       <p class="text-center text-muted">© 2023 The Auction House</p>
     </footer>
+    <!-- Register user modal -->
     <div
       class="modal fade"
       id="registerUserModal"
@@ -249,6 +262,7 @@
         </div>
       </div>
     </div>
+    <!-- User created modal -->
     <div
       class="modal fade"
       id="userCreatedModal"
@@ -281,6 +295,69 @@
               data-bs-dismiss="modal"
             >
               Continue to login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Change avatar modal -->
+    <div
+      class="modal fade"
+      id="changeAvatarModal"
+      tabindex="-1"
+      aria-labelledby="changeAvatarModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Change your avatar</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="newAvatar" class="col-form-label"
+                  >New Avatar URL:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newAvatarUrlInput"
+                  name="newAvatar"
+                  placeholder="Must be a valid URL"
+                />
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainerAvatar"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
+              <div
+                class="alert alert-success"
+                role="alert"
+                id="successContainerAvatar"
+                style="display: none"
+                ;
+              >
+                Your avatar is updated!
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="registerNewAvatarBtn"
+            >
+              Update avatar
             </button>
           </div>
         </div>

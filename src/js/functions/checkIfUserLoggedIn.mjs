@@ -9,9 +9,10 @@ export function checkIfUserIsLoggedIN() {
       creditsContainer.innerHTML = `Credits: <span class="font-weight-light">${credits}</span>`;
       userContainerNav.href = "#";
       userContainerNav.dataset.bsToggle = "dropdown";
-    }
-    if (avatar) {
-      avatarImage.src = avatar;
+      if (avatar) {
+        avatarImage.src = avatar;
+      }
+      //location.assign("index.html"); legges til når index er oppe og går
     }
   } else {
     userContainerNav.innerHTML = "Sign In";
