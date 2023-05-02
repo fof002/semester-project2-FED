@@ -45,4 +45,3 @@ export async function loginUser(event) {
       });
   } catch (error) {}
 }
-//test user bernt2025@stud.noroff.no bernt2023
