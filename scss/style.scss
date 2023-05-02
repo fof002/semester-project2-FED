@@ -1,2 +1,13 @@
 @import "variables.scss";
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+.fa-circle-check {
+  font-size: 1.3rem;
+  color: green;
+}
+.fa-circle-exclamation {
+  color: red;
+}
+.active {
+  display: block;
+}

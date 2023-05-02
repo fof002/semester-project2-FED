@@ -37,24 +37,49 @@
               alt=""
               height="40"
           /></a>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
+              <li
+                class="nav-item dropdown d-flex justify-content-center align-items-center"
+              >
                 <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
+                  class="nav-link dropdown-toggle text-dark"
+                  href="login.html"
                   role="button"
-                  data-bs-toggle="dropdown"
+                  data-bs-toggle="false"
                   aria-expanded="false"
+                  id="userContainerNav"
                 >
-                  FOF002
                 </a>
+                <img
+                  id="avatarImage"
+                  src="img/user-regular.svg"
+                  alt="Users avatar"
+                  class="object-fit-contain opacity-75 rounded-circle"
+                  height="20"
+                  width="20"
+                />
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li class="dropdown-item" id="credits"></li>
+
                   <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
+
+                  <li
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#changeAvatarModal"
+                    data-bs-whatever="@mdo"
+                  >
+                    <i class="fa-solid fa-user-pen me-1"></i>Avatar
+                  </li>
+                  <li
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    id="logOutBtn"
+                  >
+                    <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
                   </li>
                 </ul>
               </li>
@@ -74,45 +99,50 @@
     </header>
     <main>
       <div class="mt-4" style="width: min(30em, 90vw); margin: 0 auto">
+        <p class="h1 border-bottom pb-3 mb-3">Sign in user</p>
         <form>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
+            <label for="loginInputEmail" class="form-label"
               >Email address</label
             >
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
+            <input type="email" class="form-control" id="loginInputEmail" />
             <div id="registerEmailHelp" class="form-text">
               Must be a valid @stud.noroff.no email.
             </div>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password</label
-            >
+            <label for="loginInputPassword" class="form-label">Password</label>
             <input
               type="password"
               class="form-control"
-              id="exampleInputPassword1"
+              id="loginInputPassword"
             />
           </div>
           <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-outline-dark bg-primary">
-              Submit
+            <button
+              id="loginUserBtn"
+              type="submit"
+              class="btn btn-outline-dark bg-primary"
+            >
+              Login
             </button>
             <button
               type="button"
               class="btn btn-outline-dark bg-primary"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#registerUserModal"
               data-bs-whatever="@mdo"
             >
               Register new user
             </button>
           </div>
+          <ul
+            class="alert alert-danger pl-2 mt-2"
+            role="alert"
+            id="errorContainerLogin"
+            style="display: none; padding-left: 2em"
+            ;
+          ></ul>
         </form>
       </div>
     </main>
@@ -136,19 +166,18 @@
       </ul>
       <p class="text-center text-muted">© 2023 The Auction House</p>
     </footer>
+    <!-- Register user modal -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="registerUserModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="registerUserModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Register new user
-            </h1>
+            <h1 class="modal-title fs-5">Register new user</h1>
             <button
               type="button"
               class="btn-close"
@@ -159,19 +188,58 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
+                <label for="name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="registerName" />
+                <div
+                  id="registerNameHelp"
+                  class="form-text mt-2"
+                  style="display: none"
+                >
+                  <i id="symbolName" class="fa-solid"></i>
+                  The name value must not contain punctuation symbols apart from
+                  underscore (_) and be at least four characters.
+                </div>
+              </div>
+              <div class="mb-3">
                 <label for="username" class="col-form-label">Username:</label>
-                <input type="text" class="form-control" id="username" />
+                <input type="text" class="form-control" id="registerUserName" />
                 <div id="registerEmailHelp" class="form-text">
+                  <i id="symbolEmail" class="fa-solid"></i>
                   Must be a valid @stud.noroff.no email.
                 </div>
               </div>
               <div class="mb-3">
                 <label for="password" class="col-form-label">Password:</label>
-                <input type="password" class="form-control" id="password" />
-                <div id="registerEmailHelp" class="form-text">
-                  Must be a valid @stud.noroff.no email.
+                <input
+                  type="password"
+                  class="form-control"
+                  id="registerPassword"
+                />
+                <div
+                  id="registerPasswordHelp"
+                  class="form-text mt-2"
+                  style="display: none"
+                >
+                  <i id="symbolPassword" class="fa-solid"></i>
+                  The password value must be at least 8 characters.
                 </div>
               </div>
+              <div class="mb-3">
+                <label for="avatar" class="col-form-label"
+                  >Avatar (optional):</label
+                >
+                <input type="text" class="form-control" id="registerAvatar" />
+                <div id="registerAvatarHelp" class="form-text mt-2">
+                  <span></span> Must be a valid image url.
+                </div>
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainer"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
             </form>
           </div>
           <div class="modal-footer">
@@ -182,8 +250,114 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-outline-dark bg-primary">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="registerUserBtn"
+              disabled
+            >
               Register user
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- User created modal -->
+    <div
+      class="modal fade"
+      id="userCreatedModal"
+      tabindex="-1"
+      aria-labelledby="userCreatedModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            class="modal-body d-flex align-items-center justify-content-center gap-2"
+          >
+            <i class="fa-regular fa-circle-check"></i>
+            <div class="font-weight-bold" style="font-size: 1.4rem">
+              User created!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              data-bs-dismiss="modal"
+            >
+              Continue to login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Change avatar modal -->
+    <div
+      class="modal fade"
+      id="changeAvatarModal"
+      tabindex="-1"
+      aria-labelledby="changeAvatarModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Change your avatar</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="newAvatar" class="col-form-label"
+                  >New Avatar URL:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newAvatarUrlInput"
+                  name="newAvatar"
+                  placeholder="Must be a valid URL"
+                />
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainerAvatar"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
+              <div
+                class="alert alert-success"
+                role="alert"
+                id="successContainerAvatar"
+                style="display: none"
+                ;
+              >
+                Your avatar is updated!
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="registerNewAvatarBtn"
+            >
+              Update avatar
             </button>
           </div>
         </div>
@@ -198,5 +372,6 @@
       src="https://kit.fontawesome.com/f568442570.js"
       crossorigin="anonymous"
     ></script>
+    <script src="src/js/login.js" type="module"></script>
   </body>
 </html>
