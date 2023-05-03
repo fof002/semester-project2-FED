@@ -67,10 +67,11 @@
                     style="cursor: pointer"
                     type="button"
                     data-bs-toggle="modal"
-                    data-bs-target="#addItemModal"
+                    data-bs-target="#createListingModal"
                     data-bs-whatever="@mdo"
+                    id="createListingBtn"
                   >
-                    <i class="fa-solid fa-plus me-1"></i>Add item
+                    <i class="fa-solid fa-sack-dollar me-1"></i>Sell item
                   </li>
                   <li
                     class="dropdown-item"
@@ -164,6 +165,186 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5">Change your avatar</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="newAvatar" class="col-form-label"
+                  >New Avatar URL:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newAvatarUrlInput"
+                  name="newAvatar"
+                  placeholder="Must be a valid URL"
+                />
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainerAvatar"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
+              <div
+                class="alert alert-success"
+                role="alert"
+                id="successContainerAvatar"
+                style="display: none"
+                ;
+              >
+                Your avatar is updated!
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="registerNewAvatarBtn"
+            >
+              Update avatar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create listing modal -->
+    <div
+      class="modal fade"
+      id="createListingModal"
+      tabindex="-1"
+      aria-labelledby="createListingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Create New Listing</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="listingTitle" class="col-form-label">Title:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="listingTitle"
+                  name="listingTitle"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="listingDesc" class="col-form-label"
+                  >Description:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="listingDesc"
+                  name="listingDesc"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="listingEndsAt" class="col-form-label"
+                  >Ends at:</label
+                >
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="listingEndsAt"
+                  name="listingEndsAt"
+                  required
+                />
+              </div>
+              <div class="form-text mt-2">
+                <span></span>End time for the auction.
+              </div>
+              <div class="mb-3">
+                <label for="listingTags" class="col-form-label">Tags:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="listingTags"
+                  name="listingTags"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="listingUrl" class="col-form-label"
+                  >Image URL:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="listingUrl"
+                  name="listingUrl"
+                />
+                <div class="form-text mt-2">
+                  <span></span> Must be a valid image url.
+                </div>
+              </div>
+              <ul
+                class="alert alert-danger pl-2"
+                role="alert"
+                id="errorContainerListing"
+                style="display: none; padding-left: 2em"
+                ;
+              ></ul>
+              <div
+                class="alert alert-success"
+                role="alert"
+                id="successContainerListing"
+                style="display: none"
+                ;
+              >
+                Your item is added successfully!
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              id="submitListingBtn"
+            >
+              Sell item
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Place bid modal -->
+    <div
+      class="modal fade"
+      id="placeBidModal"
+      tabindex="-1"
+      aria-labelledby="placeBidModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Place your bid</h2>
             <button
               type="button"
               class="btn-close"

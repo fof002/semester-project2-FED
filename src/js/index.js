@@ -1,8 +1,14 @@
-import { logOutBtn, registerNewAvatarBtn } from "./constants/constants.mjs";
+import {
+  logOutBtn,
+  registerNewAvatarBtn,
+  submitListingBtn,
+} from "./constants/constants.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
 import { changeAvatar } from "./functions/changeAvatar.mjs";
 import { getListings } from "./functions/getListings.mjs";
+import { createNewListing } from "./functions/createListing.mjs";
+import { openBidModal } from "./functions/placeBid.mjs";
 
 //function checking if user is logged in
 checkIfUserIsLoggedIN();
@@ -13,5 +19,18 @@ logOutBtn.addEventListener("click", logoutUser);
 //eventlistener for changing avatar
 registerNewAvatarBtn.addEventListener("click", changeAvatar);
 
-//
-getListings();
+// function for fetching listings on load
+getListings(12);
+
+// Eventlistener for creating listings
+submitListingBtn.addEventListener("click", createNewListing);
+
+//setting item id to location when clicking button for bidding
+
+document.addEventListener("click", (event) => {
+  if (event.target.matches(".place-bid-btn")) {
+    const bidItemId = event.target.getAttribute("data-item-id");
+    const newBidUrl = "index.html?biddingOn=" + bidItemId;
+    window.history.replaceState("state", "title", newBidUrl);
+  }
+});
