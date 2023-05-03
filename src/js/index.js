@@ -27,10 +27,4 @@ submitListingBtn.addEventListener("click", createNewListing);
 
 //setting item id to location when clicking button for bidding
 
-document.addEventListener("click", (event) => {
-  if (event.target.matches(".place-bid-btn")) {
-    const bidItemId = event.target.getAttribute("data-item-id");
-    const newBidUrl = "index.html?biddingOn=" + bidItemId;
-    window.history.replaceState("state", "title", newBidUrl);
-  }
-});
+document.addEventListener("click", openBidModal);

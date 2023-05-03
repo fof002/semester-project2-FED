@@ -31,7 +31,9 @@ export function createListingsHtml(
      data-bs-toggle="modal"
      data-bs-target="#placeBidModal"
      data-bs-whatever="@mdo"
-     data-item-id="${idListing}">Place bid</button>
+     data-item-id="${idListing}"
+     data-item-name="${titleListing}"
+     >Place bid</button>
  `;
     bidView = `<div class="card-body mt-2">
     <a href="#" data-item-id="${idListing}" class="card-link text-dark"
@@ -47,7 +49,7 @@ export function createListingsHtml(
                 class="card-img-top p-3"
                 src="${mediaListing}"
                 alt="${titleListing}"
-                height="270"
+                height="300"
                 onerror="this.onerror=null; this.src='img/image-regular.svg'"
               />
               <div class="card-body">
