@@ -7,8 +7,9 @@ export function checkIfUserIsLoggedIN() {
     if (accesstoken) {
       userContainerNav.innerHTML = `${name} <img
       id="avatarImage"
-      src="img/user-regular.svg"
+      src=""
       alt="Users avatar"
+      onerror="this.onerror=null; this.src='img/image-regular.svg'"
       class="object-fit-contain opacity-75 rounded-circle"
       height="20"
       width="20"
