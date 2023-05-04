@@ -58,7 +58,7 @@ export function createListingsHtml(
                 class="card-img-top p-3"
                 src="${mediaListing}"
                 alt="${titleListing}"
-                height="320"
+                height="300"
                 onerror="this.onerror=null; this.src='img/image-regular.svg'"
               />
               <div class="card-body">
