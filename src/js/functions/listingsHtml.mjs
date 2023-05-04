@@ -30,17 +30,21 @@ export function createListingsHtml(
      type="button"
      data-bs-toggle="modal"
      data-bs-target="#placeBidModal"
-     data-bs-whatever="@mdo"
      data-item-id="${idListing}"
      data-item-name="${titleListing}"
      data-item-bid ="${highestBidListing}"
-     >Place bid</button>
- `;
+     >Place bid</button>`;
     bidView = `<div class="card-body mt-2">
-    <a href="#" data-item-id="${idListing}" class="card-link text-dark"
-    >View bids</a>
-      <a href="mailto:${sellerEmailListing}" class="card-link text-dark"
-        >Contact seller</a></div>`;
+      <a href="mailto:${sellerEmailListing}" 
+        class="card-link text-dark"
+      >Contact seller</a>
+      <a href="" 
+        class="card-link text-dark"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#viewBids"
+      >View bids</a>
+    </div>`;
   }
   listingsContainer.innerHTML += `<div
               class="card shadow pb-3"
@@ -50,7 +54,7 @@ export function createListingsHtml(
                 class="card-img-top p-3"
                 src="${mediaListing}"
                 alt="${titleListing}"
-                height="300"
+                height="320"
                 onerror="this.onerror=null; this.src='img/image-regular.svg'"
               />
               <div class="card-body">

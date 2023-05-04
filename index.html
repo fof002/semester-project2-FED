@@ -23,8 +23,8 @@
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03"
+            data-bs-target="#navbarToggler"
+            aria-controls="navbarToggler"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -38,9 +38,9 @@
               height="40"
           /></a>
           <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">                 
               <li
-                class="nav-item dropdown d-flex justify-content-center align-items-center"
+                class="nav-item dropdown"
               >
                 <a
                   class="nav-link dropdown-toggle text-dark"
@@ -50,15 +50,7 @@
                   aria-expanded="false"
                   id="userContainerNav"
                 >
-                </a>
-                <img
-                  id="avatarImage"
-                  src="img/user-regular.svg"
-                  alt="Users avatar"
-                  class="object-fit-contain opacity-75 rounded-circle"
-                  height="20"
-                  width="20"
-                />
+            </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-item" id="credits"></li>
                   <li><hr class="dropdown-divider" /></li>
@@ -95,12 +87,12 @@
             </ul>
             <form class="d-flex" role="search">
               <input
-                class="form-control me-2"
+                class="form-control me-2 rounded-0"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button class="btn btn-outline-dark" type="submit">Search</button>
+              <button class="btn btn-outline-dark rounded-0" type="submit">Search</button>
             </form>
           </div>
         </div>
@@ -333,6 +325,14 @@
         </div>
       </div>
     </div>
+        <!-- view bid modal -->
+        <div
+        class="modal fade"
+        id="viewBids"
+        tabindex="-1"
+        aria-labelledby="viewBidsLabel"
+        aria-hidden="true"
+      ></div>
     <!-- Place bid modal -->
     <div
       class="modal fade"
@@ -355,27 +355,26 @@
           <div class="modal-body">
             <form>
               <div class="alert alert-primary" role="alert" ;>
-                <div class="pl-2">
-                  You are about to place a bid on
+                <p class="pl-2">
+                  You are about to place a bid on:
                   <span id="bidInfo" style="font-style: italic"></span>
-                </div>
-              </div>
-              <div class="alert alert-primary" role="alert" ;>
+                </p>
                 <div class="pl-3">
                   Current leading bid:
                   <span id="highestBidInfo" style="font-style: italic"></span>
-                </div>
-              </div>
+                </p>
+                <p class="pl-2">
+                  Your credit
+                  <span id="bidCredit" style="font-style: italic"></span>
+                </p>
+              </div>           
               <div class="mb-3">
-                <label for="newBid" class="col-form-label"
-                  >Place your bid:</label
-                >
                 <input
                   type="number"
                   class="form-control"
                   id="placeBidInput"
                   name="newBid"
-                  placeholder="Number only"
+                  placeholder="Place your bid here"
                 />
               </div>
               <ul

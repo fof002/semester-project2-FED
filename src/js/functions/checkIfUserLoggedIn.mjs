@@ -5,7 +5,14 @@ export function checkIfUserIsLoggedIN() {
     const userData = JSON.parse(localStorage.getItem("userInfo"));
     const { name, credits, accesstoken, avatar } = userData;
     if (accesstoken) {
-      userContainerNav.innerHTML = name;
+      userContainerNav.innerHTML = `${name} <img
+      id="avatarImage"
+      src="img/user-regular.svg"
+      alt="Users avatar"
+      class="object-fit-contain opacity-75 rounded-circle"
+      height="20"
+      width="20"
+    />`;
       creditsContainer.innerHTML = `Credits: <span class="font-weight-light">${credits}</span>`;
       userContainerNav.href = "#";
       userContainerNav.dataset.bsToggle = "dropdown";
