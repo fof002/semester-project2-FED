@@ -40,6 +40,17 @@ export const successContainerListing = document.querySelector(
 export const errorContainerListing = document.querySelector(
   "#errorContainerListing"
 );
+
+// Place bid
+export const placeBidInfo = document.querySelector("#bidInfo");
+export const highestBidInfo = document.querySelector("#highestBidInfo");
+export const placeBidInput = document.querySelector("#placeBidInput");
+export const placeNewBidBtn = document.querySelector("#placeNewBidBtn");
+export const successContainerBid = document.querySelector(
+  "#successContainerBid"
+);
+export const errorContainerBid = document.querySelector("#errorContainerBid");
+
 //for the function check if user is logged in
 export const userContainerNav = document.querySelector("#userContainerNav");
 export const creditsContainer = document.querySelector("#credits");

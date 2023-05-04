@@ -6,9 +6,10 @@ import {
 } from "../constants/constants.mjs";
 import { createListingsHtml } from "./listingsHtml.mjs";
 
+let highestBid = "";
 /**
  * Function for fetching listings from auction API. Apply number of listings to be returned as a parameter
- * @param {number} numberOfListings
+ * @param {number} numberOfListings - The number of listings you want returned from the API call
  */
 
 export async function getListings(numberOfListings) {
@@ -32,8 +33,8 @@ export async function getListings(numberOfListings) {
               id,
               created,
               media,
-              bids: { amount },
             } = listings[i];
+            findHighestBid(listings[i]);
             createListingsHtml(
               media,
               title,
@@ -41,13 +42,25 @@ export async function getListings(numberOfListings) {
               email,
               description,
               created,
-              amount,
-              id
+              id,
+              highestBid
             );
           }
         }
       });
   } catch {
     listingsContainer.innerHTML = errorMessage;
+  }
+}
+
+function findHighestBid(paramListings) {
+  let bidsArray = paramListings.bids;
+  let arrayOfBids = bidsArray.map((sum) => {
+    return sum.amount;
+  });
+  if (arrayOfBids.length === 0) {
+    highestBid = 0;
+  } else {
+    highestBid = Math.max(...arrayOfBids);
   }
 }

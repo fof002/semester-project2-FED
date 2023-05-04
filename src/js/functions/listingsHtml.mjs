@@ -20,8 +20,8 @@ export function createListingsHtml(
   sellerEmailListing,
   descriptionListing,
   createdListing,
-  bidsListing,
-  idListing
+  idListing,
+  highestBidListing
 ) {
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     bidBtn = `
@@ -33,6 +33,7 @@ export function createListingsHtml(
      data-bs-whatever="@mdo"
      data-item-id="${idListing}"
      data-item-name="${titleListing}"
+     data-item-bid ="${highestBidListing}"
      >Place bid</button>
  `;
     bidView = `<div class="card-body mt-2">
@@ -67,7 +68,7 @@ export function createListingsHtml(
                 <li class="list-group-item">Created: <span style="font-style:italic">${new Date(
                   createdListing
                 ).toDateString()}</span></li>
-                <li class="list-group-item">Bids: <span style="font-style:italic">${bidsListing}</span></li>
+                <li class="list-group-item">Highest bid: <span style="font-style:italic">${highestBidListing}</span></li>
               </ul>
                   ${bidView}
             </div>`;

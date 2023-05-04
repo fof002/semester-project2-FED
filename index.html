@@ -354,33 +354,45 @@
           </div>
           <div class="modal-body">
             <form>
+              <div class="alert alert-primary" role="alert" ;>
+                <div class="pl-2">
+                  You are about to place a bid on
+                  <span id="bidInfo" style="font-style: italic"></span>
+                </div>
+              </div>
+              <div class="alert alert-primary" role="alert" ;>
+                <div class="pl-3">
+                  Current leading bid:
+                  <span id="highestBidInfo" style="font-style: italic"></span>
+                </div>
+              </div>
               <div class="mb-3">
-                <label for="newAvatar" class="col-form-label"
-                  >New Avatar URL:</label
+                <label for="newBid" class="col-form-label"
+                  >Place your bid:</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
-                  id="newAvatarUrlInput"
-                  name="newAvatar"
-                  placeholder="Must be a valid URL"
+                  id="placeBidInput"
+                  name="newBid"
+                  placeholder="Number only"
                 />
               </div>
               <ul
                 class="alert alert-danger pl-2"
                 role="alert"
-                id="errorContainerAvatar"
+                id="errorContainerBid"
                 style="display: none; padding-left: 2em"
                 ;
               ></ul>
               <div
                 class="alert alert-success"
                 role="alert"
-                id="successContainerAvatar"
+                id="successContainerBid"
                 style="display: none"
                 ;
               >
-                Your avatar is updated!
+                Your bid has been placed!
               </div>
             </form>
           </div>
@@ -388,9 +400,9 @@
             <button
               type="button"
               class="btn btn-outline-dark bg-primary"
-              id="registerNewAvatarBtn"
+              id="placeNewBidBtn"
             >
-              Update avatar
+              Place your bid
             </button>
           </div>
         </div>
