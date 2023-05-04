@@ -33,6 +33,7 @@ export async function getListings(numberOfListings) {
               id,
               created,
               media,
+              endsAt,
             } = listings[i];
             findHighestBid(listings[i]);
             createListingsHtml(
@@ -43,7 +44,8 @@ export async function getListings(numberOfListings) {
               description,
               created,
               id,
-              highestBid
+              highestBid,
+              endsAt
             );
           }
         }
