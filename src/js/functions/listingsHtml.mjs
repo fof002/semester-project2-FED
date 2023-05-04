@@ -21,7 +21,8 @@ export function createListingsHtml(
   descriptionListing,
   createdListing,
   idListing,
-  highestBidListing
+  highestBidListing,
+  endsAtListing
 ) {
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     bidBtn = `
@@ -74,6 +75,9 @@ export function createListingsHtml(
                 <li class="list-group-item">Seller: <span style="font-style:italic">${sellerListing}</span></li>
                 <li class="list-group-item">Created: <span style="font-style:italic">${new Date(
                   createdListing
+                ).toDateString()}</span></li>
+                <li class="list-group-item">Ends at: <span style="font-style:italic">${new Date(
+                  endsAtListing
                 ).toDateString()}</span></li>
                 <li class="list-group-item">Highest bid: <span style="font-style:italic">${highestBidListing}</span></li>
               </ul>
