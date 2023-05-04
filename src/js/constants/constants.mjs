@@ -53,7 +53,7 @@ export const errorContainerBid = document.querySelector("#errorContainerBid");
 export const bidCredit = document.querySelector("#bidCredit");
 
 // view bids
-export const viewBidsContainer = document.querySelector("#viewBidsContainer");
+export const bidListGroup = document.querySelector("#bidListGroup");
 
 //for the function check if user is logged in
 export const userContainerNav = document.querySelector("#userContainerNav");

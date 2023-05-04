@@ -156,7 +156,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5">Change your avatar</h1>
+            <h2 class="modal-title fs-5">Change your avatar</h2>
             <button
               type="button"
               class="btn-close"
@@ -325,14 +325,42 @@
         </div>
       </div>
     </div>
-        <!-- view bid modal -->
-        <div
-        class="modal fade"
-        id="viewBids"
-        tabindex="-1"
-        aria-labelledby="viewBidsLabel"
-        aria-hidden="true"
-      ></div>
+    <!-- view bid modal -->
+    <div
+      class="modal fade"
+      id="viewBidModal"
+      tabindex="-1"
+      aria-labelledby="viewBidModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Bids</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush" id="bidListGroup" role="alert" ;>
+             <li class="list-group-item">There are now bids for this item</li>
+            </ul>           
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark bg-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Place bid modal -->
     <div
       class="modal fade"

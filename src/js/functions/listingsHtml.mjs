@@ -33,18 +33,21 @@ export function createListingsHtml(
      data-item-id="${idListing}"
      data-item-name="${titleListing}"
      data-item-bid ="${highestBidListing}"
-     >Place bid</button>`;
+     >Place bid</button>
+     <button
+     class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+     type="button"
+     data-bs-toggle="modal"
+     data-bs-target="#viewBidModal"
+     data-item-id="${idListing}"
+     data-item-name="${titleListing}"
+     data-item-bid ="${highestBidListing}"
+     >View bids</button>`;
     bidView = `<div class="card-body mt-2">
       <a href="mailto:${sellerEmailListing}" 
         class="card-link text-dark"
       >Contact seller</a>
-      <a href="" 
-        class="card-link text-dark"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#viewBids"
-      >View bids</a>
-    </div>`;
+      </div>`;
   }
   listingsContainer.innerHTML += `<div
               class="card shadow pb-3"

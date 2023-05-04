@@ -10,6 +10,7 @@ import { changeAvatar } from "./functions/changeAvatar.mjs";
 import { getListings } from "./functions/getListings.mjs";
 import { createNewListing } from "./functions/createListing.mjs";
 import { openBidModal, placeBid } from "./functions/placeBid.mjs";
+import { getBids } from "./functions/viewBids.mjs";
 
 //function checking if user is logged in
 checkIfUserIsLoggedIN();
@@ -32,3 +33,6 @@ document.addEventListener("click", openBidModal);
 
 //eventlistener for click on BID button
 placeNewBidBtn.addEventListener("click", placeBid);
+
+//eventlistener for bids
+document.addEventListener("click", getBids);
