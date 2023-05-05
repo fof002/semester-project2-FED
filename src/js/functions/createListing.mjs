@@ -13,6 +13,10 @@ import { getListings } from "./getListings.mjs";
 
 const listingUrl = url + "listings";
 
+/**
+ * Function for creating new listing.
+ */
+
 export async function createNewListing() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const { accesstoken } = userInfo;
@@ -50,7 +54,9 @@ export async function createNewListing() {
     errorContainerAvatar.innerHTML = `<li>${error}</li>`;
   }
 }
-
+/**
+ * Function for validating that fields when creating listing is not empty
+ */
 export function listingSubmitBtnEnabler() {
   if (createListingEndsAt.value && createListingtitle.value.length > 3) {
     submitListingBtn.disabled = false;

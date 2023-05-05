@@ -8,6 +8,11 @@ import { url } from "../BASE_URL.mjs";
 const loginUserUrl = url + "auth/login";
 let loginInput = {};
 
+/**
+ * Function for loging in user
+ * @param {event} event
+ */
+
 export async function loginUser(event) {
   try {
     event.preventDefault();

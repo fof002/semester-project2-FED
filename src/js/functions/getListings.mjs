@@ -55,6 +55,9 @@ export async function getListings(numberOfListings) {
   }
 }
 
+/**
+ * Function for loading more listings. Offset gets value from the amount of items that are currently in display on each click
+ */
 export async function loadMoreListings() {
   const numberOfCurrentListings =
     document.querySelectorAll(".listing-card").length;

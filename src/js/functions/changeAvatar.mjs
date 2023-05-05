@@ -6,6 +6,10 @@ import {
 } from "../constants/constants.mjs";
 import { checkIfUserIsLoggedIN } from "./checkIfUserLoggedIn.mjs";
 
+/**
+ * FUnction for changing the avatar of the user
+ */
+
 export async function changeAvatar() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const { name, accesstoken } = userInfo;

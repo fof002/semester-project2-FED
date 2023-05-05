@@ -1,5 +1,8 @@
 import { userContainerNav, creditsContainer } from "../constants/constants.mjs";
 
+/**
+ * Function for checking if user is logged inn on pageload. If the user has stored data in localstorage, the profile is set up in navbar and the user sees more info on listing
+ */
 export function checkIfUserIsLoggedIN() {
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     const userData = JSON.parse(localStorage.getItem("userInfo"));

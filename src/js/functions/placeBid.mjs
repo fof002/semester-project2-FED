@@ -11,6 +11,11 @@ import { url } from "../BASE_URL.mjs";
 import { getListings } from "./getListings.mjs";
 import { checkIfUserIsLoggedIN } from "./checkIfUserLoggedIn.mjs";
 
+/**
+ * Function for opening modal. Sets dataattributes and input help for user when placing bid
+ * @param {event} event
+ */
+
 export function openBidModal(event) {
   if (event.target.matches(".place-bid-btn")) {
     const userCredits = JSON.parse(localStorage.getItem("userInfo")).credits;
