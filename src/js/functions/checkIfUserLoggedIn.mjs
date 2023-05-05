@@ -9,7 +9,7 @@ export function checkIfUserIsLoggedIN() {
       id="avatarImage"
       src=""
       alt="Users avatar"
-      onerror="this.onerror=null; this.src='img/image-regular.svg'"
+      onerror="this.onerror=null; this.src='img/circle-user-regular.svg'"
       class="object-fit-contain opacity-75 rounded-circle"
       height="20"
       width="20"

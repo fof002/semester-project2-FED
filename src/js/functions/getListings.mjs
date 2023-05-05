@@ -16,12 +16,12 @@ export async function getListings(numberOfListings) {
   const listingsUrl =
     url +
     `listings?limit=${numberOfListings}&_seller=true&_bids=true&_active=true&`;
-  listingsContainer.innerHTML = spinner;
   try {
     fetch(listingsUrl)
       .then((response) => response.json())
       .then((listings) => {
         if (listings.errors) {
+          listingsContainer.innerHTML = "";
           listingsContainer.innerHTML = errorMessage;
         } else {
           listingsContainer.innerHTML = "";

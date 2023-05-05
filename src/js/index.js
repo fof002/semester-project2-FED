@@ -3,6 +3,7 @@ import {
   registerNewAvatarBtn,
   submitListingBtn,
   placeNewBidBtn,
+  loadMoreBtn,
 } from "./constants/constants.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
@@ -21,12 +22,11 @@ logOutBtn.addEventListener("click", logoutUser);
 //eventlistener for changing avatar
 registerNewAvatarBtn.addEventListener("click", changeAvatar);
 
-// function for fetching listings on load
-getListings(12);
+// function for fetching listings
+getListings(30);
 
 // Eventlistener for creating listings
 submitListingBtn.addEventListener("click", createNewListing);
-
 //setting item id to location when clicking button for bidding
 
 document.addEventListener("click", openBidModal);

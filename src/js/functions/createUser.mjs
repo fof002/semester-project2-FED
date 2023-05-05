@@ -17,7 +17,7 @@ const registerUserUrl = url + "auth/register";
 
 export async function registerUser() {
   let userInput = {
-    name: registerNameInput.value.trim(),
+    name: registerNameInput.value.replaceAll(" ", "_").trim(),
     email: registerUsernameInput.value.trim(),
     password: registerPasswordInput.value.trim(),
     avatar: registerAvatarInput.value.trim(),
@@ -32,6 +32,7 @@ export async function registerUser() {
     })
       .then((response) => response.json())
       .then((json) => {
+        console.log(json);
         if (json.errors) {
           errorContainer.style.display = "block";
           errorContainer.innerHTML = `<li>${json.errors[0].message}</li>`;
