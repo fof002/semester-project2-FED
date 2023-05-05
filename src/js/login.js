@@ -13,6 +13,7 @@ import { loginUser } from "./functions/loginUser.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
 import { changeAvatar } from "./functions/changeAvatar.mjs";
+import { searchListings } from "./functions/getListings.mjs";
 
 //Eventlistener for POSTING the registered info. Button is enabled when validation passses
 registerUserBtn.addEventListener("click", registerUser);

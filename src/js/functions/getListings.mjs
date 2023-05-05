@@ -3,6 +3,10 @@ import {
   listingsContainer,
   errorMessage,
   moreListingsContainer,
+  searchInput,
+  spinner,
+  header,
+  loadMoreBtn,
 } from "../constants/constants.mjs";
 import { createListingsHtml } from "./listingsHtml.mjs";
 
@@ -20,6 +24,7 @@ export async function getListings(numberOfListings) {
     fetch(listingsUrl)
       .then((response) => response.json())
       .then((listings) => {
+        console.log(listings);
         if (listings.errors) {
           listingsContainer.innerHTML = "";
           listingsContainer.innerHTML = errorMessage;
@@ -64,7 +69,6 @@ export async function loadMoreListings() {
   const listingsUrl =
     url +
     `listings?limit=20&offset=${numberOfCurrentListings}&_seller=true&_bids=true&_active=true&`;
-  console.log(numberOfCurrentListings);
   try {
     fetch(listingsUrl)
       .then((response) => response.json())
@@ -99,6 +103,78 @@ export async function loadMoreListings() {
       });
   } catch {
     moreListingsContainer.innerHTML = errorMessage;
+  }
+}
+
+export async function searchListings(event) {
+  event.preventDefault();
+  loadMoreBtn.style.display = "none";
+  listingsContainer.innerHTML = spinner;
+  header.innerHTML = "Search results";
+  const searchListingsUrl = url + `listings?_seller=true&_bids=true&`;
+  try {
+    fetch(searchListingsUrl)
+      .then((response) => response.json())
+      .then((listings) => {
+        if (listings.errors) {
+          listingsContainer.innerHTML = "";
+          listingsContainer.innerHTML = errorMessage;
+        } else {
+          let descriptionOfListing = "";
+          const searchParameters = searchInput.value.toLowerCase().trim();
+          const searchResults = listings.filter((listing) => {
+            let titleOfListing = listing.title.toLowerCase();
+            if (listing.description) {
+              descriptionOfListing = listing.description.toLowerCase();
+            }
+            if (
+              titleOfListing.includes(searchParameters) ||
+              descriptionOfListing.toLowerCase().includes(searchParameters)
+            ) {
+              return true;
+            }
+          });
+          console.log(searchResults);
+          if (searchResults.length === 0) {
+            listingsContainer.innerHTML = "No results found";
+          } else {
+            listingsContainer.innerHTML = "";
+            for (let i = 0; i < searchResults.length; i++) {
+              const {
+                title,
+                description,
+                seller: { name, email },
+                id,
+                created,
+                media,
+                endsAt,
+              } = searchResults[i];
+              findHighestBid(searchResults[i]);
+              createListingsHtml(
+                media,
+                title,
+                name,
+                email,
+                description,
+                created,
+                id,
+                highestBid,
+                endsAt
+              );
+            }
+          }
+        }
+      });
+  } catch {
+    listingsContainer.innerHTML = errorMessage;
+  }
+}
+
+export function searchSubmitBtnEnabler() {
+  if (searchInput.value.length > 3) {
+    searchBtn.disabled = false;
+  } else {
+    searchBtn.disabled = true;
   }
 }
 

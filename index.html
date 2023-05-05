@@ -87,14 +87,16 @@
                 </ul>
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form id="searchForm" class="d-flex" role="search">
               <input
                 class="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                id="searchInput"
               />
-              <button class="btn btn-outline-dark" type="submit">Search</button>
+              <button class="btn btn-outline-dark" id="searchBtn" type="submit"
+              disabled>Search</button>
             </form>
           </div>
         </div>
@@ -102,7 +104,7 @@
     </header>
     <main>
       <div class="mt-4" style="width: min(80em, 90vw); margin: 0 auto">
-        <h1 class="h1 border-bottom pb-3 mb-3 text-center">Browse items</h1>
+        <h1 id="header" class="h1 border-bottom pb-3 mb-3 text-center">Browse items</h1>
         <div class="container">
           <div
             class="row d-flex justify-content-center gap-4"
