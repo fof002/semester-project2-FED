@@ -7,6 +7,7 @@ import {
   spinner,
   header,
   loadMoreBtn,
+  searchForm,
 } from "../constants/constants.mjs";
 import { createListingsHtml } from "./listingsHtml.mjs";
 
@@ -17,46 +18,49 @@ let highestBid = "";
  */
 
 export async function getListings(numberOfListings) {
-  const listingsUrl =
-    url +
-    `listings?limit=${numberOfListings}&_seller=true&_bids=true&_active=true&`;
-  try {
-    fetch(listingsUrl)
-      .then((response) => response.json())
-      .then((listings) => {
-        console.log(listings);
-        if (listings.errors) {
-          listingsContainer.innerHTML = "";
-          listingsContainer.innerHTML = errorMessage;
-        } else {
-          listingsContainer.innerHTML = "";
-          for (let i = 0; i < listings.length; i++) {
-            const {
-              title,
-              description,
-              seller: { name, email },
-              id,
-              created,
-              media,
-              endsAt,
-            } = listings[i];
-            findHighestBid(listings[i]);
-            createListingsHtml(
-              media,
-              title,
-              name,
-              email,
-              description,
-              created,
-              id,
-              highestBid,
-              endsAt
-            );
+  if (!new URL(document.location).searchParams.get("search")) {
+    const listingsUrl =
+      url +
+      `listings?limit=${numberOfListings}&_seller=true&_bids=true&_active=true&`;
+    header.innerHTML = "Browse Items";
+    try {
+      fetch(listingsUrl)
+        .then((response) => response.json())
+        .then((listings) => {
+          console.log(listings);
+          if (listings.errors) {
+            listingsContainer.innerHTML = "";
+            listingsContainer.innerHTML = errorMessage;
+          } else {
+            listingsContainer.innerHTML = "";
+            for (let i = 0; i < listings.length; i++) {
+              const {
+                title,
+                description,
+                seller: { name, email },
+                id,
+                created,
+                media,
+                endsAt,
+              } = listings[i];
+              findHighestBid(listings[i]);
+              createListingsHtml(
+                media,
+                title,
+                name,
+                email,
+                description,
+                created,
+                id,
+                highestBid,
+                endsAt
+              );
+            }
           }
-        }
-      });
-  } catch {
-    listingsContainer.innerHTML = errorMessage;
+        });
+    } catch {
+      listingsContainer.innerHTML = errorMessage;
+    }
   }
 }
 
@@ -107,66 +111,71 @@ export async function loadMoreListings() {
 }
 
 export async function searchListings(event) {
-  event.preventDefault();
-  loadMoreBtn.style.display = "none";
-  listingsContainer.innerHTML = spinner;
-  header.innerHTML = "Search results";
-  const searchListingsUrl = url + `listings?_seller=true&_bids=true&`;
-  try {
-    fetch(searchListingsUrl)
-      .then((response) => response.json())
-      .then((listings) => {
-        if (listings.errors) {
-          listingsContainer.innerHTML = "";
-          listingsContainer.innerHTML = errorMessage;
-        } else {
-          let descriptionOfListing = "";
-          const searchParameters = searchInput.value.toLowerCase().trim();
-          const searchResults = listings.filter((listing) => {
-            let titleOfListing = listing.title.toLowerCase();
-            if (listing.description) {
-              descriptionOfListing = listing.description.toLowerCase();
-            }
-            if (
-              titleOfListing.includes(searchParameters) ||
-              descriptionOfListing.toLowerCase().includes(searchParameters)
-            ) {
-              return true;
-            }
-          });
-          console.log(searchResults);
-          if (searchResults.length === 0) {
-            listingsContainer.innerHTML = "No results found";
-          } else {
+  if (new URL(document.location).searchParams.get("search")) {
+    loadMoreBtn.style.display = "none";
+    listingsContainer.innerHTML = spinner;
+    header.innerHTML = "Search results";
+    const searchListingsUrl = url + `listings?_seller=true&_bids=true&`;
+    try {
+      fetch(searchListingsUrl)
+        .then((response) => response.json())
+        .then((listings) => {
+          console.log(listings);
+
+          if (listings.errors) {
             listingsContainer.innerHTML = "";
-            for (let i = 0; i < searchResults.length; i++) {
-              const {
-                title,
-                description,
-                seller: { name, email },
-                id,
-                created,
-                media,
-                endsAt,
-              } = searchResults[i];
-              findHighestBid(searchResults[i]);
-              createListingsHtml(
-                media,
-                title,
-                name,
-                email,
-                description,
-                created,
-                id,
-                highestBid,
-                endsAt
-              );
+            listingsContainer.innerHTML = errorMessage;
+          } else {
+            let descriptionOfListing = "";
+            const searchParameters = new URL(
+              document.location
+            ).searchParams.get("search");
+            const searchResults = listings.filter((listing) => {
+              let titleOfListing = listing.title.toLowerCase();
+              if (listing.description) {
+                descriptionOfListing = listing.description.toLowerCase();
+              }
+              if (
+                titleOfListing.includes(searchParameters) ||
+                descriptionOfListing.toLowerCase().includes(searchParameters)
+              ) {
+                return true;
+              }
+            });
+            console.log(searchResults);
+            if (searchResults.length === 0) {
+              listingsContainer.innerHTML = "No results found";
+            } else {
+              listingsContainer.innerHTML = "";
+              for (let i = 0; i < searchResults.length; i++) {
+                const {
+                  title,
+                  description,
+                  seller: { name, email },
+                  id,
+                  created,
+                  media,
+                  endsAt,
+                } = searchResults[i];
+                findHighestBid(searchResults[i]);
+                createListingsHtml(
+                  media,
+                  title,
+                  name,
+                  email,
+                  description,
+                  created,
+                  id,
+                  highestBid,
+                  endsAt
+                );
+              }
             }
           }
-        }
-      });
-  } catch {
-    listingsContainer.innerHTML = errorMessage;
+        });
+    } catch {
+      listingsContainer.innerHTML = errorMessage;
+    }
   }
 }
 

@@ -16,6 +16,7 @@ import {
   getListings,
   loadMoreListings,
   searchSubmitBtnEnabler,
+  searchListings,
 } from "./functions/getListings.mjs";
 import {
   createNewListing,
@@ -24,6 +25,7 @@ import {
 import { openBidModal, placeBid } from "./functions/placeBid.mjs";
 import { getBids } from "./functions/viewBids.mjs";
 import { enableSearchParams } from "./functions/searchParams.mjs";
+import { preventSearchDefault } from "./functions/preventSearchDefault.mjs";
 
 //function checking if user is logged in
 checkIfUserIsLoggedIN();
@@ -36,9 +38,11 @@ registerNewAvatarBtn.addEventListener("click", changeAvatar);
 
 // functions for fetching listings and loading more
 getListings(30);
+searchListings();
 loadMoreBtn.addEventListener("click", loadMoreListings);
 searchBtn.addEventListener("click", enableSearchParams);
 searchInput.addEventListener("keyup", searchSubmitBtnEnabler);
+searchInput.addEventListener("keydown", preventSearchDefault);
 
 // Eventlistener for creating listings
 submitListingBtn.addEventListener("click", createNewListing);
