@@ -7,6 +7,7 @@ import {
   createListingTags,
   successContainerListing,
   errorContainerListing,
+  submitListingBtn,
 } from "../constants/constants.mjs";
 import { getListings } from "./getListings.mjs";
 
@@ -47,5 +48,13 @@ export async function createNewListing() {
   } catch (error) {
     errorContainerAvatar.style.display = "block";
     errorContainerAvatar.innerHTML = `<li>${error}</li>`;
+  }
+}
+
+export function listingSubmitBtnEnabler() {
+  if (createListingEndsAt.value && createListingtitle.value.length > 3) {
+    submitListingBtn.disabled = false;
+  } else {
+    submitListingBtn.disabled = true;
   }
 }

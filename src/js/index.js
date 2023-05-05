@@ -4,12 +4,17 @@ import {
   submitListingBtn,
   placeNewBidBtn,
   loadMoreBtn,
+  createListingtitle,
+  createListingEndsAt,
 } from "./constants/constants.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
 import { changeAvatar } from "./functions/changeAvatar.mjs";
 import { getListings, loadMoreListings } from "./functions/getListings.mjs";
-import { createNewListing } from "./functions/createListing.mjs";
+import {
+  createNewListing,
+  listingSubmitBtnEnabler,
+} from "./functions/createListing.mjs";
 import { openBidModal, placeBid } from "./functions/placeBid.mjs";
 import { getBids } from "./functions/viewBids.mjs";
 
@@ -28,6 +33,9 @@ loadMoreBtn.addEventListener("click", loadMoreListings);
 
 // Eventlistener for creating listings
 submitListingBtn.addEventListener("click", createNewListing);
+createListingEndsAt.addEventListener("keyup", listingSubmitBtnEnabler);
+createListingtitle.addEventListener("keyup", listingSubmitBtnEnabler);
+
 //setting item id to location when clicking button for bidding
 
 document.addEventListener("click", openBidModal);
