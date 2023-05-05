@@ -7,7 +7,6 @@ import {
   spinner,
   header,
   loadMoreBtn,
-  searchForm,
 } from "../constants/constants.mjs";
 import { createListingsHtml } from "./listingsHtml.mjs";
 
@@ -21,7 +20,7 @@ export async function getListings(numberOfListings) {
   if (!new URL(document.location).searchParams.get("search")) {
     const listingsUrl =
       url +
-      `listings?limit=${numberOfListings}&_seller=true&_bids=true&_active=true&`;
+      `listings?limit=${numberOfListings}&_seller=true&_bids=true&sort=created&sortOrder=desc&_active=true&`;
     header.innerHTML = "Browse Items";
     try {
       fetch(listingsUrl)
@@ -72,7 +71,7 @@ export async function loadMoreListings() {
     document.querySelectorAll(".listing-card").length;
   const listingsUrl =
     url +
-    `listings?limit=20&offset=${numberOfCurrentListings}&_seller=true&_bids=true&_active=true&`;
+    `listings?limit=20&offset=${numberOfCurrentListings}&_seller=true&sort=created&sortOrder=desc&_bids=true&_active=true&`;
   try {
     fetch(listingsUrl)
       .then((response) => response.json())
@@ -115,7 +114,8 @@ export async function searchListings(event) {
     loadMoreBtn.style.display = "none";
     listingsContainer.innerHTML = spinner;
     header.innerHTML = "Search results";
-    const searchListingsUrl = url + `listings?_seller=true&_bids=true&`;
+    const searchListingsUrl =
+      url + `listings?_seller=true&sort=created&sortOrder=desc&_bids=true&`;
     try {
       fetch(searchListingsUrl)
         .then((response) => response.json())
