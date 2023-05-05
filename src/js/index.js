@@ -8,7 +8,7 @@ import {
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
 import { changeAvatar } from "./functions/changeAvatar.mjs";
-import { getListings } from "./functions/getListings.mjs";
+import { getListings, loadMoreListings } from "./functions/getListings.mjs";
 import { createNewListing } from "./functions/createListing.mjs";
 import { openBidModal, placeBid } from "./functions/placeBid.mjs";
 import { getBids } from "./functions/viewBids.mjs";
@@ -22,8 +22,9 @@ logOutBtn.addEventListener("click", logoutUser);
 //eventlistener for changing avatar
 registerNewAvatarBtn.addEventListener("click", changeAvatar);
 
-// function for fetching listings
+// functions for fetching listings and loading more
 getListings(30);
+loadMoreBtn.addEventListener("click", loadMoreListings);
 
 // Eventlistener for creating listings
 submitListingBtn.addEventListener("click", createNewListing);

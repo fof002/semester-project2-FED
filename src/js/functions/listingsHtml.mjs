@@ -51,7 +51,7 @@ export function createListingsHtml(
       </div>`;
   }
   listingsContainer.innerHTML += `<div
-              class="card shadow pb-3"
+              class="card shadow pb-3 listing-card"
               style="width: 24rem"
             >
               <img

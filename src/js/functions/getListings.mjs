@@ -1,8 +1,8 @@
 import { url } from "../BASE_URL.mjs";
 import {
   listingsContainer,
-  spinner,
   errorMessage,
+  moreListingsContainer,
 } from "../constants/constants.mjs";
 import { createListingsHtml } from "./listingsHtml.mjs";
 
@@ -55,6 +55,54 @@ export async function getListings(numberOfListings) {
   }
 }
 
+export async function loadMoreListings() {
+  const numberOfCurrentListings =
+    document.querySelectorAll(".listing-card").length;
+  const listingsUrl =
+    url +
+    `listings?limit=20&offset=${numberOfCurrentListings}&_seller=true&_bids=true&_active=true&`;
+  console.log(numberOfCurrentListings);
+  try {
+    fetch(listingsUrl)
+      .then((response) => response.json())
+      .then((listings) => {
+        if (listings.errors) {
+          moreListingsContainer.innerHTML = errorMessage;
+        } else {
+          for (let i = 0; i < listings.length; i++) {
+            const {
+              title,
+              description,
+              seller: { name, email },
+              id,
+              created,
+              media,
+              endsAt,
+            } = listings[i];
+            findHighestBid(listings[i]);
+            createListingsHtml(
+              media,
+              title,
+              name,
+              email,
+              description,
+              created,
+              id,
+              highestBid,
+              endsAt
+            );
+          }
+        }
+      });
+  } catch {
+    moreListingsContainer.innerHTML = errorMessage;
+  }
+}
+
+/**
+ * Function for finding the highest bid in the bids array in each listing
+ * @param {object} paramListings
+ */
 function findHighestBid(paramListings) {
   let bidsArray = paramListings.bids;
   let arrayOfBids = bidsArray.map((sum) => {

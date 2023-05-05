@@ -40,7 +40,12 @@ export const successContainerListing = document.querySelector(
 export const errorContainerListing = document.querySelector(
   "#errorContainerListing"
 );
+
+//Load more
 export const loadMoreBtn = document.querySelector("#loadMoreBtn");
+export const moreListingsContainer = document.querySelector(
+  "#moreListingsContainer"
+);
 
 // Place bid
 export const placeBidInfo = document.querySelector("#bidInfo");

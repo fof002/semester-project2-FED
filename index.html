@@ -101,7 +101,7 @@
     </header>
     <main>
       <div class="mt-4" style="width: min(80em, 90vw); margin: 0 auto">
-        <h1 class="h1 border-bottom pb-3 mb-3 text-center">Latest items</h1>
+        <h1 class="h1 border-bottom pb-3 mb-3 text-center">Browse items</h1>
         <div class="container">
           <div
             class="row d-flex justify-content-center gap-4"
@@ -109,7 +109,13 @@
           ><div class="spinner-border" role="status">
             <span class="sr-only"></span>
            </div></div>
-           
+           <div class="mt-4 d-flex justify-content-center align-items-center" id="moreListingsContainer">
+            <button
+              id="loadMoreBtn"
+              class="btn btn-outline-dark bg-primary mt-1" 
+              data-item-count = "0"
+              >Load more</button>
+           </div>
         </div>
       </div>
     </main>
