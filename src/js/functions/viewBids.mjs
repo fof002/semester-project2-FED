@@ -1,6 +1,9 @@
 import { url } from "../BASE_URL.mjs";
 import { bidListGroup, errorMessage } from "../constants/constants.mjs";
 
+/**
+ * Function for adding bids in the modal whih opens when user click view bids.
+ */
 export async function getBids(event) {
   if (event.target.matches(".view-bid-btn")) {
     const bidItemId = event.target.getAttribute("data-item-id");

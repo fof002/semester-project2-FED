@@ -11,6 +11,11 @@ import { url } from "../BASE_URL.mjs";
 import { getListings } from "./getListings.mjs";
 import { checkIfUserIsLoggedIN } from "./checkIfUserLoggedIn.mjs";
 
+/**
+ * Function for opening modal. Sets dataattributes and input help for user when placing bid
+ * @param {event} event
+ */
+
 export function openBidModal(event) {
   if (event.target.matches(".place-bid-btn")) {
     const userCredits = JSON.parse(localStorage.getItem("userInfo")).credits;
@@ -58,9 +63,14 @@ export async function placeBid() {
           errorContainerBid.style.display = "none";
           successContainerBid.style.display = "block";
           successContainerBid.innerHTML = "Your bid has been placed!";
+          window.history.pushState(
+            "Updated URL",
+            "The Auction House",
+            "index.html"
+          );
           updateUserCredit();
           checkIfUserIsLoggedIN();
-          getListings(12);
+          getListings(50);
         }
       });
   } catch (error) {

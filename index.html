@@ -13,11 +13,12 @@
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="dist/style.css" />
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <title>The Auction House</title>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary fixed-top">
         <div class="container-fluid">
           <button
             class="navbar-toggler"
@@ -43,9 +44,10 @@
                 class="nav-item dropdown"
               >
                 <a
-                  class="nav-link dropdown-toggle text-dark"
+                  class="nav-link dropdown-toggle text-dark bg-white mt-1 rounded text-muted"
                   href="login.html"
                   role="button"
+                  style="padding-left:1em;"
                   data-bs-toggle="false"
                   aria-expanded="false"
                   id="userContainerNav"
@@ -85,22 +87,24 @@
                 </ul>
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form id="searchForm" class="d-flex" role="search">
               <input
-                class="form-control me-2 rounded-0"
+                class="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                id="searchInput"
               />
-              <button class="btn btn-outline-dark rounded-0" type="submit">Search</button>
+              <button class="btn btn-outline-dark" id="searchBtn" type="button"
+              disabled>Search</button>
             </form>
           </div>
         </div>
       </nav>
     </header>
     <main>
-      <div class="mt-4" style="width: min(80em, 90vw); margin: 0 auto">
-        <h1 class="h1 border-bottom pb-3 mb-3 text-center">Latest items</h1>
+      <div class="mt-4 position-relative" style="width: min(80em, 90vw); margin: 0 auto;top:3.5em">
+        <h1 id="header" class="h1 border-bottom pb-3 mb-3 text-center"></h1>
         <div class="container">
           <div
             class="row d-flex justify-content-center gap-4"
@@ -108,10 +112,17 @@
           ><div class="spinner-border" role="status">
             <span class="sr-only"></span>
            </div></div>
+           <div class="mt-4 d-flex justify-content-center align-items-center" id="moreListingsContainer">
+            <button
+              id="loadMoreBtn"
+              class="btn btn-outline-dark bg-primary mt-1" 
+              data-item-count = "0"
+              >Load more</button>
+           </div>
         </div>
       </div>
     </main>
-    <footer class="py-3 my-4 mt-5">
+    <footer class="py-3 my-4 mt-5 position-relative" style="top:3.5em">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">Home</a>
@@ -181,10 +192,10 @@
                 />
               </div>
               <ul
-                class="alert alert-danger pl-2"
+                class="alert alert-danger pl-2 overflow-hidden"
                 role="alert"
                 id="errorContainerAvatar"
-                style="display: none; padding-left: 2em"
+                style="display: none; padding-left:2em;max-height:4.6em"
                 ;
               ></ul>
               <div
@@ -320,6 +331,7 @@
               type="button"
               class="btn btn-outline-dark bg-primary"
               id="submitListingBtn"
+              disabled
             >
               Sell item
             </button>

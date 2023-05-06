@@ -6,6 +6,8 @@ import {
   loginUserBtn,
   logOutBtn,
   registerNewAvatarBtn,
+  searchInput,
+  searchBtn,
 } from "./constants/constants.mjs";
 import { registerUser } from "./functions/createUser.mjs";
 import { validateUserInput } from "./functions/validateUserInput.js";
@@ -13,6 +15,9 @@ import { loginUser } from "./functions/loginUser.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
 import { changeAvatar } from "./functions/changeAvatar.mjs";
+import { searchSubmitBtnEnabler } from "./functions/getListings.mjs";
+import { enableSearchParams } from "./functions/searchParams.mjs";
+import { preventSearchDefault } from "./functions/preventSearchDefault.mjs";
 
 //Eventlistener for POSTING the registered info. Button is enabled when validation passses
 registerUserBtn.addEventListener("click", registerUser);
@@ -21,6 +26,11 @@ registerUserBtn.addEventListener("click", registerUser);
 registerNameInput.addEventListener("keyup", validateUserInput);
 registerPasswordInput.addEventListener("keyup", validateUserInput);
 registerUsernameInput.addEventListener("keyup", validateUserInput);
+
+//for search
+searchBtn.addEventListener("click", enableSearchParams);
+searchInput.addEventListener("keyup", searchSubmitBtnEnabler);
+searchInput.addEventListener("keydown", preventSearchDefault);
 
 //eventlistener for signing in user
 loginUserBtn.addEventListener("click", loginUser);

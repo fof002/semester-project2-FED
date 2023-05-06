@@ -41,6 +41,18 @@ export const errorContainerListing = document.querySelector(
   "#errorContainerListing"
 );
 
+// search function
+export const searchBtn = document.querySelector("#searchBtn");
+export const searchInput = document.querySelector("#searchInput");
+export const header = document.querySelector("#header");
+export const searchForm = document.querySelector("#searchForm");
+
+//Load more
+export const loadMoreBtn = document.querySelector("#loadMoreBtn");
+export const moreListingsContainer = document.querySelector(
+  "#moreListingsContainer"
+);
+
 // Place bid
 export const placeBidInfo = document.querySelector("#bidInfo");
 export const highestBidInfo = document.querySelector("#highestBidInfo");

@@ -12,6 +12,7 @@ import { listingsContainer } from "../constants/constants.mjs";
 
 let bidBtn = "";
 let bidView = "";
+let viewBidBtn = "";
 
 export function createListingsHtml(
   mediaListing,
@@ -22,7 +23,8 @@ export function createListingsHtml(
   createdListing,
   idListing,
   highestBidListing,
-  endsAtListing
+  endsAtListing,
+  bidsListing
 ) {
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     bidBtn = `
@@ -35,35 +37,31 @@ export function createListingsHtml(
      data-item-name="${titleListing}"
      data-item-bid ="${highestBidListing}"
      >Place bid</button>
-     <button
-     class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
-     type="button"
-     data-bs-toggle="modal"
-     data-bs-target="#viewBidModal"
-     data-item-id="${idListing}"
-     data-item-name="${titleListing}"
-     data-item-bid ="${highestBidListing}"
-     >View bids</button>`;
+     `;
     bidView = `<div class="card-body mt-2">
       <a href="mailto:${sellerEmailListing}" 
         class="card-link text-dark"
       >Contact seller</a>
       </div>`;
+
+    checkIfListingIsCurrentUsers(sellerListing);
+    checkIfThereAreNoBids(bidsListing, idListing);
   }
   listingsContainer.innerHTML += `<div
-              class="card shadow pb-3"
+              class="card shadow pb-3 listing-card"
               style="width: 24rem"
             >
               <img
                 class="card-img-top p-3"
                 src="${mediaListing}"
                 alt="${titleListing}"
-                height="320"
+                height="270"
                 onerror="this.onerror=null; this.src='img/image-regular.svg'"
               />
               <div class="card-body">
                 <h5 class="card-title">${titleListing}</h5>
-                ${bidBtn}
+                ${bidBtn} 
+                ${viewBidBtn}
               </div>
               <ul class="list-group list-group-flush border-none">
                 <li class="list-group-item"> <details>
@@ -83,4 +81,44 @@ export function createListingsHtml(
               </ul>
                   ${bidView}
             </div>`;
+}
+
+/**
+ * Function for removing bidBtn if the item belongs to current user
+ * @param {string} sellerName - Name of the seller
+ */
+
+function checkIfListingIsCurrentUsers(sellerName) {
+  const userObject = JSON.parse(localStorage.getItem("userInfo"));
+  if (userObject.name === sellerName) {
+    bidBtn = "";
+    sellerName = "This is your own item";
+  }
+}
+
+/**
+ * Function for checking for bids on listing - disables button if there are no bids
+ * @param {number} bidsOfListing - the bids of the current listing
+ * @param {string} id - the id of the current listing
+ */
+
+function checkIfThereAreNoBids(bidsOfListing, id) {
+  if (bidsOfListing.length === 0) {
+    viewBidBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#viewBidModal"
+    data-item-id="${id}"
+    disabled
+    >No bids yet</button>`;
+  } else {
+    viewBidBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#viewBidModal"
+    data-item-id="${id}"
+    >View bids</button>`;
+  }
 }
