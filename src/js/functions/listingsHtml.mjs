@@ -12,6 +12,7 @@ import { listingsContainer } from "../constants/constants.mjs";
 
 let bidBtn = "";
 let bidView = "";
+let viewBidBtn = "";
 
 export function createListingsHtml(
   mediaListing,
@@ -35,20 +36,22 @@ export function createListingsHtml(
      data-item-name="${titleListing}"
      data-item-bid ="${highestBidListing}"
      >Place bid</button>
-     <button
-     class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
-     type="button"
-     data-bs-toggle="modal"
-     data-bs-target="#viewBidModal"
-     data-item-id="${idListing}"
-     data-item-name="${titleListing}"
-     data-item-bid ="${highestBidListing}"
-     >View bids</button>`;
+     `;
     bidView = `<div class="card-body mt-2">
       <a href="mailto:${sellerEmailListing}" 
         class="card-link text-dark"
       >Contact seller</a>
       </div>`;
+    viewBidBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#viewBidModal"
+    data-item-id="${idListing}"
+    data-item-name="${titleListing}"
+    data-item-bid ="${highestBidListing}"
+    >View bids</button>`;
+    checkIfListingIsCurrentUsers(sellerListing);
   }
   listingsContainer.innerHTML += `<div
               class="card shadow pb-3 listing-card"
@@ -63,7 +66,8 @@ export function createListingsHtml(
               />
               <div class="card-body">
                 <h5 class="card-title">${titleListing}</h5>
-                ${bidBtn}
+                ${bidBtn} 
+                ${viewBidBtn}
               </div>
               <ul class="list-group list-group-flush border-none">
                 <li class="list-group-item"> <details>
@@ -83,4 +87,11 @@ export function createListingsHtml(
               </ul>
                   ${bidView}
             </div>`;
+}
+
+function checkIfListingIsCurrentUsers(sellerName) {
+  const userObject = JSON.parse(localStorage.getItem("userInfo"));
+  if (userObject.name === sellerName) {
+    bidBtn = "";
+  }
 }
