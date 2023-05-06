@@ -23,7 +23,8 @@ export function createListingsHtml(
   createdListing,
   idListing,
   highestBidListing,
-  endsAtListing
+  endsAtListing,
+  bidsListing
 ) {
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     bidBtn = `
@@ -42,16 +43,9 @@ export function createListingsHtml(
         class="card-link text-dark"
       >Contact seller</a>
       </div>`;
-    viewBidBtn = `<button
-    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
-    type="button"
-    data-bs-toggle="modal"
-    data-bs-target="#viewBidModal"
-    data-item-id="${idListing}"
-    data-item-name="${titleListing}"
-    data-item-bid ="${highestBidListing}"
-    >View bids</button>`;
+
     checkIfListingIsCurrentUsers(sellerListing);
+    checkIfThereAreNoBids(bidsListing, idListing);
   }
   listingsContainer.innerHTML += `<div
               class="card shadow pb-3 listing-card"
@@ -89,9 +83,42 @@ export function createListingsHtml(
             </div>`;
 }
 
+/**
+ * Function for removing bidBtn if the item belongs to current user
+ * @param {string} sellerName - Name of the seller
+ */
+
 function checkIfListingIsCurrentUsers(sellerName) {
   const userObject = JSON.parse(localStorage.getItem("userInfo"));
   if (userObject.name === sellerName) {
     bidBtn = "";
+    sellerName = "This is your own item";
+  }
+}
+
+/**
+ * Function for checking for bids on listing - disables button if there are no bids
+ * @param {number} bidsOfListing - the bids of the current listing
+ * @param {string} id - the id of the current listing
+ */
+
+function checkIfThereAreNoBids(bidsOfListing, id) {
+  if (bidsOfListing.length === 0) {
+    viewBidBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#viewBidModal"
+    data-item-id="${id}"
+    disabled
+    >No bids yet</button>`;
+  } else {
+    viewBidBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#viewBidModal"
+    data-item-id="${id}"
+    >View bids</button>`;
   }
 }

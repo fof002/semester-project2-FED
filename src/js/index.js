@@ -38,7 +38,7 @@ registerNewAvatarBtn.addEventListener("click", changeAvatar);
 
 // functions for fetching listings and loading more
 getListings(30);
-searchListings();
+searchListings(new URL(document.location).searchParams.get("search"));
 loadMoreBtn.addEventListener("click", loadMoreListings);
 searchBtn.addEventListener("click", enableSearchParams);
 searchInput.addEventListener("keyup", searchSubmitBtnEnabler);

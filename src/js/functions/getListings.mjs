@@ -41,6 +41,7 @@ export async function getListings(numberOfListings) {
                 created,
                 media,
                 endsAt,
+                bids,
               } = listings[i];
               findHighestBid(listings[i]);
               createListingsHtml(
@@ -52,7 +53,8 @@ export async function getListings(numberOfListings) {
                 created,
                 id,
                 highestBid,
-                endsAt
+                endsAt,
+                bids
               );
             }
           }
@@ -88,6 +90,7 @@ export async function loadMoreListings() {
               created,
               media,
               endsAt,
+              bids,
             } = listings[i];
             findHighestBid(listings[i]);
             createListingsHtml(
@@ -99,7 +102,8 @@ export async function loadMoreListings() {
               created,
               id,
               highestBid,
-              endsAt
+              endsAt,
+              bids
             );
           }
         }
@@ -109,8 +113,13 @@ export async function loadMoreListings() {
   }
 }
 
-export async function searchListings(event) {
-  if (new URL(document.location).searchParams.get("search")) {
+/**
+ * Function for searching for items. Searches in description, tags and title.
+ * @param {string} searchParamsUrl - URL for the API call when searching
+ */
+
+export async function searchListings(searchParamsUrl) {
+  if (searchParamsUrl) {
     loadMoreBtn.style.display = "none";
     listingsContainer.innerHTML = spinner;
     header.innerHTML = "Search results";
@@ -120,16 +129,12 @@ export async function searchListings(event) {
       fetch(searchListingsUrl)
         .then((response) => response.json())
         .then((listings) => {
-          console.log(listings);
-
           if (listings.errors) {
             listingsContainer.innerHTML = "";
             listingsContainer.innerHTML = errorMessage;
           } else {
             let descriptionOfListing = "";
-            const searchParameters = new URL(
-              document.location
-            ).searchParams.get("search");
+            const searchParameters = searchParamsUrl;
             const searchResults = listings.filter((listing) => {
               let titleOfListing = listing.title.toLowerCase();
               if (listing.description) {
@@ -142,7 +147,6 @@ export async function searchListings(event) {
                 return true;
               }
             });
-            console.log(searchResults);
             if (searchResults.length === 0) {
               listingsContainer.innerHTML = "No results found";
             } else {
@@ -156,6 +160,7 @@ export async function searchListings(event) {
                   created,
                   media,
                   endsAt,
+                  bids,
                 } = searchResults[i];
                 findHighestBid(searchResults[i]);
                 createListingsHtml(
@@ -167,7 +172,8 @@ export async function searchListings(event) {
                   created,
                   id,
                   highestBid,
-                  endsAt
+                  endsAt,
+                  bids
                 );
               }
             }
@@ -178,9 +184,11 @@ export async function searchListings(event) {
     }
   }
 }
-
+/**
+ * Function for enabling seearch when the user has typed in more than two keys
+ */
 export function searchSubmitBtnEnabler() {
-  if (searchInput.value.length > 3) {
+  if (searchInput.value.length > 2) {
     searchBtn.disabled = false;
   } else {
     searchBtn.disabled = true;

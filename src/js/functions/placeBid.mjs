@@ -63,9 +63,14 @@ export async function placeBid() {
           errorContainerBid.style.display = "none";
           successContainerBid.style.display = "block";
           successContainerBid.innerHTML = "Your bid has been placed!";
+          window.history.pushState(
+            "Updated URL",
+            "The Auction House",
+            "index.html"
+          );
           updateUserCredit();
           checkIfUserIsLoggedIN();
-          getListings(12);
+          getListings(50);
         }
       });
   } catch (error) {
