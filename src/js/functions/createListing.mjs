@@ -12,6 +12,7 @@ import {
 import { getListings } from "./getListings.mjs";
 
 const listingUrl = url + "listings";
+let mediaUrl = "";
 
 /**
  * Function for creating new listing.
@@ -21,10 +22,10 @@ export async function createNewListing() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const { accesstoken } = userInfo;
   const newListingContent = {
-    title: createListingtitle.value,
-    description: createListingDesc.value,
-    tags: [createListingTags.value],
-    media: [createListingUrl.value],
+    title: createListingtitle.value.trim(),
+    description: createListingDesc.value.trim(),
+    tags: [createListingTags.value.trim()],
+    media: createMediaproperty(),
     endsAt: new Date(createListingEndsAt.value).toISOString(),
   };
   try {
@@ -62,5 +63,11 @@ export function listingSubmitBtnEnabler() {
     submitListingBtn.disabled = false;
   } else {
     submitListingBtn.disabled = true;
+  }
+}
+
+function createMediaproperty() {
+  if (createListingUrl.value.trim()) {
+    return (mediaUrl = [createListingUrl.value.trim()]);
   }
 }
