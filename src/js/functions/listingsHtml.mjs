@@ -13,6 +13,8 @@ import { listingsContainer } from "../constants/constants.mjs";
 let bidBtn = "";
 let bidView = "";
 let viewBidBtn = "";
+let deleteBtn = "";
+let changeBtn = "";
 
 export function createListingsHtml(
   mediaListing,
@@ -26,6 +28,11 @@ export function createListingsHtml(
   endsAtListing,
   bidsListing
 ) {
+  bidBtn = "";
+  bidView = "";
+  viewBidBtn = "";
+  deleteBtn = "";
+  changeBtn = "";
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     bidBtn = `
    <button
@@ -44,7 +51,7 @@ export function createListingsHtml(
       >Contact seller</a>
       </div>`;
 
-    checkIfListingIsCurrentUsers(sellerListing);
+    checkIfListingIsCurrentUsers(sellerListing, idListing);
     checkIfThereAreNoBids(bidsListing, idListing);
   }
   listingsContainer.innerHTML += `<div
@@ -62,6 +69,8 @@ export function createListingsHtml(
                 <h5 class="card-title">${titleListing}</h5>
                 ${bidBtn} 
                 ${viewBidBtn}
+                ${changeBtn}
+                ${deleteBtn}
               </div>
               <ul class="list-group list-group-flush border-none">
                 <li class="list-group-item"> <details>
@@ -88,11 +97,23 @@ export function createListingsHtml(
  * @param {string} sellerName - Name of the seller
  */
 
-function checkIfListingIsCurrentUsers(sellerName) {
+function checkIfListingIsCurrentUsers(sellerName, idItem) {
   const userObject = JSON.parse(localStorage.getItem("userInfo"));
   if (userObject.name === sellerName) {
     bidBtn = "";
-    sellerName = "This is your own item";
+    changeBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#changeModal"
+    data-item-id="${idItem}"
+    >Update</button>`;
+    deleteBtn = `<button
+    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    type="button"
+    id="deleteBtn
+    data-item-id="${idItem}"
+    >Delete</button>`;
   }
 }
 
@@ -111,7 +132,7 @@ function checkIfThereAreNoBids(bidsOfListing, id) {
     data-bs-target="#viewBidModal"
     data-item-id="${id}"
     disabled
-    >No bids yet</button>`;
+    >No bids</button>`;
   } else {
     viewBidBtn = `<button
     class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 

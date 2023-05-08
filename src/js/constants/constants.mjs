@@ -40,6 +40,8 @@ export const successContainerListing = document.querySelector(
 export const errorContainerListing = document.querySelector(
   "#errorContainerListing"
 );
+// Listings per profile
+export const viewListingsUser = document.querySelector("#viewListingUser");
 
 // search function
 export const searchBtn = document.querySelector("#searchBtn");

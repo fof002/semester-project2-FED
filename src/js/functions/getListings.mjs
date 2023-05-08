@@ -17,7 +17,10 @@ let highestBid = "";
  */
 
 export async function getListings(numberOfListings) {
-  if (!new URL(document.location).searchParams.get("search")) {
+  if (
+    !new URL(document.location).searchParams.get("search") &&
+    !new URL(document.location).searchParams.get("username")
+  ) {
     const listingsUrl =
       url +
       `listings?limit=${numberOfListings}&_seller=true&_bids=true&sort=created&sortOrder=desc&_active=true&`;
@@ -184,6 +187,80 @@ export async function searchListings(searchParamsUrl) {
     }
   }
 }
+
+/**
+ * Function for finding all listings per user.
+ * @param {string} userParamsUrl - URL for the API call when searching
+ */
+
+export async function getListingsPerUser(userParamsUrl) {
+  if (userParamsUrl) {
+    loadMoreBtn.style.display = "none";
+    listingsContainer.innerHTML = spinner;
+    header.innerHTML = "Your Items";
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const { accesstoken } = userInfo;
+    console.log(accesstoken);
+    try {
+      const usernameFromUrl = new URL(document.location).searchParams.get(
+        "username"
+      );
+      const usernameUrl =
+        url +
+        "profiles/" +
+        usernameFromUrl +
+        "/listings?_seller=true&sort=created&sortOrder=desc&_bids=true&";
+      fetch(usernameUrl, {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${accesstoken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((listings) => {
+          console.log(listings);
+          if (listings.errors) {
+            listingsContainer.innerHTML = "";
+            listingsContainer.innerHTML = errorMessage;
+          } else {
+            if (listings.length === 0) {
+              listingsContainer.innerHTML = "You don't seem to have any items";
+            } else {
+              listingsContainer.innerHTML = "";
+              for (let i = 0; i < listings.length; i++) {
+                const {
+                  title,
+                  description,
+                  seller: { name, email },
+                  id,
+                  created,
+                  media,
+                  endsAt,
+                  bids,
+                } = listings[i];
+                findHighestBid(listings[i]);
+                createListingsHtml(
+                  media,
+                  title,
+                  name,
+                  email,
+                  description,
+                  created,
+                  id,
+                  highestBid,
+                  endsAt,
+                  bids
+                );
+              }
+            }
+          }
+        });
+    } catch {
+      listingsContainer.innerHTML = errorMessage;
+    }
+  }
+}
+
 /**
  * Function for enabling seearch when the user has typed in more than two keys
  */

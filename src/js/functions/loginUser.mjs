@@ -5,7 +5,7 @@ import {
 } from "../constants/constants.mjs";
 import { url } from "../BASE_URL.mjs";
 
-const loginUserUrl = url + "auth/login";
+const loginUserUrl = url + "auth/login?";
 let loginInput = {};
 
 /**
@@ -30,19 +30,17 @@ export async function loginUser(event) {
     })
       .then((response) => response.json())
       .then((json) => {
+        console.log(json);
         if (json.errors) {
           errorContainerLogin.style.display = "block";
           errorContainerLogin.innerHTML = `<li>${json.errors[0].message}</li>`;
         } else {
-          const { accessToken, name, email, credits, avatar } = json;
+          const { accessToken, name } = json;
           localStorage.setItem(
             "userInfo",
             JSON.stringify({
               accesstoken: accessToken,
-              email: email,
               name: name,
-              credits: credits,
-              avatar: avatar,
             })
           );
           location.assign("index.html");

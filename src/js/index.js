@@ -17,6 +17,7 @@ import {
   loadMoreListings,
   searchSubmitBtnEnabler,
   searchListings,
+  getListingsPerUser,
 } from "./functions/getListings.mjs";
 import {
   createNewListing,
@@ -39,6 +40,7 @@ registerNewAvatarBtn.addEventListener("click", changeAvatar);
 // functions for fetching listings and loading more
 getListings(30);
 searchListings(new URL(document.location).searchParams.get("search"));
+getListingsPerUser(new URL(document.location).searchParams.get("username"));
 loadMoreBtn.addEventListener("click", loadMoreListings);
 searchBtn.addEventListener("click", enableSearchParams);
 searchInput.addEventListener("keyup", searchSubmitBtnEnabler);
