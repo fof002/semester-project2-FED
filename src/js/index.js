@@ -8,6 +8,7 @@ import {
   createListingEndsAt,
   searchBtn,
   searchInput,
+  deleteListingBtn,
 } from "./constants/constants.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
@@ -27,6 +28,10 @@ import { openBidModal, placeBid } from "./functions/placeBid.mjs";
 import { getBids } from "./functions/viewBids.mjs";
 import { enableSearchParams } from "./functions/searchParams.mjs";
 import { preventSearchDefault } from "./functions/preventSearchDefault.mjs";
+import {
+  setIdOfDeleteItem,
+  deleteListing,
+} from "./functions/deleteListing.mjs";
 
 //function checking if user is logged in
 checkIfUserIsLoggedIN();
@@ -36,6 +41,10 @@ logOutBtn.addEventListener("click", logoutUser);
 
 //eventlistener for changing avatar
 registerNewAvatarBtn.addEventListener("click", changeAvatar);
+
+//function for deleting listing
+document.addEventListener("click", setIdOfDeleteItem);
+deleteListingBtn.addEventListener("click", deleteListing);
 
 // functions for fetching listings and loading more
 getListings(30);

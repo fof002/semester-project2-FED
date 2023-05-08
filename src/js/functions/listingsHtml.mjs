@@ -102,16 +102,18 @@ function checkIfListingIsCurrentUsers(sellerName, idItem) {
   if (userObject.name === sellerName) {
     bidBtn = "";
     changeBtn = `<button
-    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    class="btn btn-outline-dark bg-primary mt-1 change-listing-btn" 
     type="button"
     data-bs-toggle="modal"
     data-bs-target="#changeModal"
     data-item-id="${idItem}"
     >Update</button>`;
     deleteBtn = `<button
-    class="btn btn-outline-dark bg-primary mt-1 view-bid-btn" 
+    class="btn btn-outline-dark bg-primary mt-1 delete-listing-btn" 
     type="button"
-    id="deleteBtn
+    data-bs-toggle="modal"
+    data-bs-target="#deleteModal"
+    id="deleteBtn"
     data-item-id="${idItem}"
     >Delete</button>`;
   }

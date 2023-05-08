@@ -200,7 +200,6 @@ export async function getListingsPerUser(userParamsUrl) {
     header.innerHTML = "Your Items";
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const { accesstoken } = userInfo;
-    console.log(accesstoken);
     try {
       const usernameFromUrl = new URL(document.location).searchParams.get(
         "username"
@@ -218,7 +217,6 @@ export async function getListingsPerUser(userParamsUrl) {
       })
         .then((response) => response.json())
         .then((listings) => {
-          console.log(listings);
           if (listings.errors) {
             listingsContainer.innerHTML = "";
             listingsContainer.innerHTML = errorMessage;

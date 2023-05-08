@@ -165,6 +165,44 @@
       aria-labelledby="userCreatedModalLabel"
       aria-hidden="true"
     ></div>
+     <!-- delete listing modal -->
+     <div
+     class="modal fade"
+     id="deleteModal"
+     tabindex="-1"
+     aria-labelledby="deleteModalLabel"
+     aria-hidden="true"
+   >    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5">Delete your item</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div
+                class="alert alert-warning"
+                role="alert"
+                ;
+              >
+                Are you sure you want to delete your item? This action cannot be undone.
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark bg-primary"
+          id="deleteListingBtn"
+        >
+          Delete item
+        </button>
+      </div>
+    </div>
+  </div></div>
     <!-- Change avatar modal -->
     <div
       class="modal fade"
