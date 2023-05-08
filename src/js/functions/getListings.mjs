@@ -266,6 +266,8 @@ export async function getListingsPerUser(userParamsUrl) {
  */
 
 export async function gettingWonListings(userParamsUrl) {
+  loadMoreBtn.style.display = "none";
+
   if (userParamsUrl) {
     loadMoreBtn.style.display = "none";
     listingsContainer.innerHTML = spinner;
