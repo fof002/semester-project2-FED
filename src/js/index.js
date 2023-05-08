@@ -19,6 +19,7 @@ import {
   searchSubmitBtnEnabler,
   searchListings,
   getListingsPerUser,
+  gettingWonListings,
 } from "./functions/getListings.mjs";
 import {
   createNewListing,
@@ -50,6 +51,10 @@ deleteListingBtn.addEventListener("click", deleteListing);
 getListings(30);
 searchListings(new URL(document.location).searchParams.get("search"));
 getListingsPerUser(new URL(document.location).searchParams.get("username"));
+gettingWonListings(
+  new URL(document.location).searchParams.get("winnerusername")
+);
+
 loadMoreBtn.addEventListener("click", loadMoreListings);
 searchBtn.addEventListener("click", enableSearchParams);
 searchInput.addEventListener("keyup", searchSubmitBtnEnabler);

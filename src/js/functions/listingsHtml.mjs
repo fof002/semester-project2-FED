@@ -53,6 +53,7 @@ export function createListingsHtml(
 
     checkIfListingIsCurrentUsers(sellerListing, idListing);
     checkIfThereAreNoBids(bidsListing, idListing);
+    checkIfTheBidsAreWOn();
   }
   listingsContainer.innerHTML += `<div
               class="card shadow pb-3 listing-card"
@@ -69,7 +70,6 @@ export function createListingsHtml(
                 <h5 class="card-title">${titleListing}</h5>
                 ${bidBtn} 
                 ${viewBidBtn}
-                ${changeBtn}
                 ${deleteBtn}
               </div>
               <ul class="list-group list-group-flush border-none">
@@ -101,13 +101,6 @@ function checkIfListingIsCurrentUsers(sellerName, idItem) {
   const userObject = JSON.parse(localStorage.getItem("userInfo"));
   if (userObject.name === sellerName) {
     bidBtn = "";
-    changeBtn = `<button
-    class="btn btn-outline-dark bg-primary mt-1 change-listing-btn" 
-    type="button"
-    data-bs-toggle="modal"
-    data-bs-target="#changeModal"
-    data-item-id="${idItem}"
-    >Update</button>`;
     deleteBtn = `<button
     class="btn btn-outline-dark bg-primary mt-1 delete-listing-btn" 
     type="button"
@@ -143,5 +136,11 @@ function checkIfThereAreNoBids(bidsOfListing, id) {
     data-bs-target="#viewBidModal"
     data-item-id="${id}"
     >View bids</button>`;
+  }
+}
+
+function checkIfTheBidsAreWOn() {
+  if (new URL(document.location).searchParams.get("winnerusername")) {
+    bidBtn = "";
   }
 }

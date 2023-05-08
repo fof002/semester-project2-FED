@@ -19,7 +19,8 @@ let highestBid = "";
 export async function getListings(numberOfListings) {
   if (
     !new URL(document.location).searchParams.get("search") &&
-    !new URL(document.location).searchParams.get("username")
+    !new URL(document.location).searchParams.get("username") &&
+    !new URL(document.location).searchParams.get("winnerusername")
   ) {
     const listingsUrl =
       url +
@@ -251,6 +252,83 @@ export async function getListingsPerUser(userParamsUrl) {
                 );
               }
             }
+          }
+        });
+    } catch {
+      listingsContainer.innerHTML = errorMessage;
+    }
+  }
+}
+
+/**
+ * Function for finding all listings a user has won.
+ * @param {string} userParamsUrl - URL for the API call when searching
+ */
+
+export async function gettingWonListings(userParamsUrl) {
+  if (userParamsUrl) {
+    loadMoreBtn.style.display = "none";
+    listingsContainer.innerHTML = spinner;
+    header.innerHTML = "Your Wins";
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const { accesstoken } = userInfo;
+    try {
+      const usernameFromUrl = new URL(document.location).searchParams.get(
+        "winnerusername"
+      );
+      const usernameUrl =
+        url +
+        "profiles/" +
+        usernameFromUrl +
+        "?_seller=true&sort=created&sortOrder=desc&_bids=true&";
+      fetch(usernameUrl, {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${accesstoken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((profile) => {
+          let wins = profile.wins;
+          for (let i = 0; i < wins.length; i++) {
+            let wonListingUrl =
+              url +
+              "listings/" +
+              wins[i] +
+              "?_seller=true&sort=created&sortOrder=desc&_bids=true";
+            listingsContainer.innerHTML = "";
+            fetch(wonListingUrl, {
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${accesstoken}`,
+              },
+            })
+              .then((response) => response.json())
+              .then((currentListing) => {
+                console.log(currentListing);
+                const {
+                  title,
+                  description,
+                  seller: { name, email },
+                  id,
+                  created,
+                  media,
+                  endsAt,
+                  bids,
+                } = currentListing;
+                createListingsHtml(
+                  media,
+                  title,
+                  name,
+                  email,
+                  description,
+                  created,
+                  id,
+                  highestBid,
+                  endsAt,
+                  bids
+                );
+              });
           }
         });
     } catch {

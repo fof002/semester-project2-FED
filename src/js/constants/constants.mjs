@@ -54,6 +54,8 @@ export const loadMoreBtn = document.querySelector("#loadMoreBtn");
 export const moreListingsContainer = document.querySelector(
   "#moreListingsContainer"
 );
+//winner of item
+export const winListings = document.querySelector("#winListings");
 
 //delete listing btn
 export const deleteListingBtn = document.querySelector("#deleteListingBtn");

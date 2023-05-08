@@ -3,6 +3,7 @@ import {
   userContainerNav,
   creditsContainer,
   viewListingsUser,
+  winListings,
 } from "../constants/constants.mjs";
 
 /**
@@ -39,6 +40,7 @@ export async function getUserProfile(profileUrl, accesstoken) {
           userContainerNav.href = "#";
           userContainerNav.dataset.bsToggle = "dropdown";
           viewListingsUser.href = `index.html?username=${name}`;
+          winListings.href = `index.html?winnerusername=${name}`;
           if (avatar) {
             avatarImage.src = avatar;
           }
