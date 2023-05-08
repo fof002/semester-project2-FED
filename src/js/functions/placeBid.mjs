@@ -6,6 +6,7 @@ import {
   errorContainerBid,
   successContainerBid,
   bidCredit,
+  creditsContainer,
 } from "../constants/constants.mjs";
 import { url } from "../BASE_URL.mjs";
 import { getListings } from "./getListings.mjs";
@@ -18,7 +19,7 @@ import { checkIfUserIsLoggedIN } from "./checkIfUserLoggedIn.mjs";
 
 export function openBidModal(event) {
   if (event.target.matches(".place-bid-btn")) {
-    const userCredits = JSON.parse(localStorage.getItem("userInfo")).credits;
+    const userCredits = creditsContainer.innerHTML;
     const bidItemId = event.target.getAttribute("data-item-id");
     const bidItemTitle = event.target.getAttribute("data-item-name");
     const bidItemHighest = event.target.getAttribute("data-item-bid");
