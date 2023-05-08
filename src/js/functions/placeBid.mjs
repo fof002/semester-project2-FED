@@ -68,7 +68,6 @@ export async function placeBid() {
             "The Auction House",
             "index.html"
           );
-          updateUserCredit();
           checkIfUserIsLoggedIN();
           getListings(50);
         }
@@ -76,25 +75,4 @@ export async function placeBid() {
   } catch (error) {
     console.log(error);
   }
-}
-
-/**
- * Function for updating usercredit
- */
-
-function updateUserCredit() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const { credits, name, email, accesstoken, avatar } = userInfo;
-  const newCredit = parseFloat(credits) - parseFloat(placeBidInput.value);
-  localStorage.clear();
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify({
-      accesstoken: accesstoken,
-      email: email,
-      name: name,
-      credits: newCredit,
-      avatar: avatar,
-    })
-  );
 }

@@ -32,22 +32,6 @@ export async function changeAvatar() {
           errorContainerAvatar.style.display = "block";
           errorContainerAvatar.innerHTML = `<li>${json.errors[0].message}</li>`;
         } else {
-          const userData = JSON.parse(localStorage.getItem("userInfo"));
-          const { name, credits, accesstoken, email } = userData;
-          console.log(json);
-          errorContainerAvatar.style.display = "none";
-          successContainerAvatar.style.display = "block";
-          const newAvatarUrl = json.avatar;
-          localStorage.setItem(
-            "userInfo",
-            JSON.stringify({
-              accesstoken: accesstoken,
-              email: email,
-              name: name,
-              credits: credits,
-              avatar: newAvatarUrl,
-            })
-          );
           checkIfUserIsLoggedIN();
         }
       });

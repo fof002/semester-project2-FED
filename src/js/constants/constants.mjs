@@ -55,6 +55,10 @@ export const moreListingsContainer = document.querySelector(
   "#moreListingsContainer"
 );
 
+//delete listing btn
+export const deleteListingBtn = document.querySelector("#deleteListingBtn");
+export const alerDelete = document.querySelector("#alertDelete");
+
 // Place bid
 export const placeBidInfo = document.querySelector("#bidInfo");
 export const highestBidInfo = document.querySelector("#highestBidInfo");

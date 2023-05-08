@@ -5,6 +5,12 @@ import {
   viewListingsUser,
 } from "../constants/constants.mjs";
 
+/**
+ * Function for updating userinfo in navbra when reloading page
+ * @param {string} profileUrl - url of the profile to get from the API
+ * @param {string} accesstoken - the accesstoken from local storage
+ */
+
 export async function getUserProfile(profileUrl, accesstoken) {
   try {
     fetch(profileUrl, {
@@ -20,7 +26,6 @@ export async function getUserProfile(profileUrl, accesstoken) {
           console.log(profile.errors);
         } else {
           const { name, credits, avatar } = profile;
-          console.log(profile);
           userContainerNav.innerHTML = `${name} <img
                 id="avatarImage"
                 src=""
