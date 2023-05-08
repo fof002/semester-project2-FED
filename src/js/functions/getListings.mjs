@@ -290,45 +290,49 @@ export async function gettingWonListings(userParamsUrl) {
         .then((response) => response.json())
         .then((profile) => {
           let wins = profile.wins;
-          for (let i = 0; i < wins.length; i++) {
-            let wonListingUrl =
-              url +
-              "listings/" +
-              wins[i] +
-              "?_seller=true&sort=created&sortOrder=desc&_bids=true";
-            listingsContainer.innerHTML = "";
-            fetch(wonListingUrl, {
-              headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${accesstoken}`,
-              },
-            })
-              .then((response) => response.json())
-              .then((currentListing) => {
-                console.log(currentListing);
-                const {
-                  title,
-                  description,
-                  seller: { name, email },
-                  id,
-                  created,
-                  media,
-                  endsAt,
-                  bids,
-                } = currentListing;
-                createListingsHtml(
-                  media,
-                  title,
-                  name,
-                  email,
-                  description,
-                  created,
-                  id,
-                  highestBid,
-                  endsAt,
-                  bids
-                );
-              });
+          if (wins.length === 0) {
+            listingsContainer.innerHTML = "You don't seem to have won anything";
+          } else {
+            for (let i = 0; i < wins.length; i++) {
+              let wonListingUrl =
+                url +
+                "listings/" +
+                wins[i] +
+                "?_seller=true&sort=created&sortOrder=desc&_bids=true";
+              listingsContainer.innerHTML = "";
+              fetch(wonListingUrl, {
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                  Authorization: `Bearer ${accesstoken}`,
+                },
+              })
+                .then((response) => response.json())
+                .then((currentListing) => {
+                  console.log(currentListing);
+                  const {
+                    title,
+                    description,
+                    seller: { name, email },
+                    id,
+                    created,
+                    media,
+                    endsAt,
+                    bids,
+                  } = currentListing;
+                  createListingsHtml(
+                    media,
+                    title,
+                    name,
+                    email,
+                    description,
+                    created,
+                    id,
+                    highestBid,
+                    endsAt,
+                    bids
+                  );
+                });
+            }
           }
         });
     } catch {
