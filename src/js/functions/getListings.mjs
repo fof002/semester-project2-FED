@@ -30,7 +30,6 @@ export async function getListings(numberOfListings) {
       fetch(listingsUrl)
         .then((response) => response.json())
         .then((listings) => {
-          console.log(listings);
           if (listings.errors) {
             listingsContainer.innerHTML = "";
             listingsContainer.innerHTML = errorMessage;
@@ -266,9 +265,8 @@ export async function getListingsPerUser(userParamsUrl) {
  */
 
 export async function gettingWonListings(userParamsUrl) {
-  loadMoreBtn.style.display = "none";
-
   if (userParamsUrl) {
+    loadMoreBtn.style.display = "none";
     loadMoreBtn.style.display = "none";
     listingsContainer.innerHTML = spinner;
     header.innerHTML = "Your Wins";
