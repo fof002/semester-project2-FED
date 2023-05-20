@@ -33,6 +33,7 @@ export async function changeAvatar() {
           errorContainerAvatar.innerHTML = `<li>${json.errors[0].message}</li>`;
         } else {
           checkIfUserIsLoggedIN();
+          successContainerAvatar.style.display = "block";
         }
       });
   } catch (error) {
