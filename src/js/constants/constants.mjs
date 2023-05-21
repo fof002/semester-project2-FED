@@ -40,6 +40,8 @@ export const successContainerListing = document.querySelector(
 export const errorContainerListing = document.querySelector(
   "#errorContainerListing"
 );
+//clear input listing
+export const clearInputBtn = document.querySelector("#clearInputBtn");
 // Listings per profile
 export const viewListingsUser = document.querySelector("#viewListingUser");
 

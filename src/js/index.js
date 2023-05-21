@@ -9,6 +9,7 @@ import {
   searchBtn,
   searchInput,
   deleteListingBtn,
+  clearInputBtn,
 } from "./constants/constants.mjs";
 import { checkIfUserIsLoggedIN } from "./functions/checkIfUserLoggedIn.mjs";
 import { logoutUser } from "./functions/logout.mjs";
@@ -33,7 +34,7 @@ import {
   setIdOfDeleteItem,
   deleteListing,
 } from "./functions/deleteListing.mjs";
-
+import { clearAllPostInput } from "./functions/clearAllPostInput.mjs";
 //function checking if user is logged in
 checkIfUserIsLoggedIN();
 
@@ -64,6 +65,9 @@ searchInput.addEventListener("keydown", preventSearchDefault);
 submitListingBtn.addEventListener("click", createNewListing);
 createListingEndsAt.addEventListener("keyup", listingSubmitBtnEnabler);
 createListingtitle.addEventListener("keyup", listingSubmitBtnEnabler);
+
+//function for reseting listing
+clearInputBtn.addEventListener("click", clearAllPostInput);
 
 //setting item id to location when clicking button for bidding
 

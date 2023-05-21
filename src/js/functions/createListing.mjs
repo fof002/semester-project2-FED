@@ -10,6 +10,7 @@ import {
   submitListingBtn,
 } from "../constants/constants.mjs";
 import { getListings } from "./getListings.mjs";
+import { clearAllPostInput } from "./clearAllPostInput.mjs";
 
 const listingUrl = url + "listings";
 let mediaUrl = "";
@@ -48,6 +49,7 @@ export async function createNewListing() {
           errorContainerListing.style.display = "none";
           successContainerListing.style.display = "block";
           getListings(12);
+          clearAllPostInput();
         }
       });
   } catch (error) {
