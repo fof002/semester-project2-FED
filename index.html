@@ -296,7 +296,22 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <label for="listingTitle" class="col-form-label">Title:</label>
+                <label for="listingEndsAt" class="col-form-label"
+                  >Ends at:<span style="color:red">*</span></label
+                >
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="listingEndsAt"
+                  name="listingEndsAt"
+                  required
+                />
+              </div>
+              <div class="form-text mt-2">
+                <span></span>End time for the auction.
+              </div>
+              <div class="mb-3">
+                <label for="listingTitle" class="col-form-label">Title:<span style="color:red">*</span></label>
                 <input
                   type="text"
                   class="form-control"
@@ -315,21 +330,6 @@
                   id="listingDesc"
                   name="listingDesc"
                 />
-              </div>
-              <div class="mb-3">
-                <label for="listingEndsAt" class="col-form-label"
-                  >Ends at:</label
-                >
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  id="listingEndsAt"
-                  name="listingEndsAt"
-                  required
-                />
-              </div>
-              <div class="form-text mt-2">
-                <span></span>End time for the auction.
               </div>
               <div class="mb-3">
                 <label for="listingTags" class="col-form-label">Tags:</label>
